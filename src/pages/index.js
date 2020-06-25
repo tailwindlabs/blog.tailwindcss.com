@@ -2,6 +2,7 @@ import { format } from 'date-fns'
 import Link from 'next/link'
 import Head from 'next/head'
 import Header from '@/components/Header'
+import PageTitle from '@/components/PageTitle'
 
 function importAll(r) {
   return r.keys().map((fileName) => ({ link: fileName.replace(/\.mdx$/, ''), module: r(fileName) }))
@@ -21,9 +22,7 @@ export default function Home() {
   return (
     <div className="divide-y divide-gray-200">
       <div className="pb-8 space-y-5">
-        <h1 className="text-3xl leading-9 font-extrabold text-gray-900 tracking-tighter sm:text-4xl sm:leading-10 md:text-5xl md:leading-none">
-          Blog
-        </h1>
+        <PageTitle>Blog</PageTitle>
         <p className="text-lg leading-7 text-gray-500">
           Latest project announcements, features and company updates from Tailwind CSS.
         </p>
