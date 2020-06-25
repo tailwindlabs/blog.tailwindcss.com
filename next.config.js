@@ -41,6 +41,7 @@ module.exports = {
             '@mdx-js/loader',
             createLoader(function (src) {
               const content = [
+                'import Post from "@/components/Post"',
                 src,
                 'export default ({ children }) => <Post meta={meta}>{children}</Post>',
               ].join('\n')
