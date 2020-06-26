@@ -1,6 +1,9 @@
 const { createLoader } = require('simple-functional-loader')
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
 
-module.exports = {
+module.exports = withBundleAnalyzer({
   pageExtensions: ['js', 'jsx', 'mdx'],
   webpack: (config, options) => {
     config.module.rules.push({
@@ -59,4 +62,4 @@ module.exports = {
 
     return config
   },
-}
+})
