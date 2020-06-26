@@ -1,6 +1,7 @@
 import PageTitle from '@/components/PageTitle'
 import tinytime from 'tinytime'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { MDXProvider } from '@mdx-js/react'
 
 const mdxComponents = {
@@ -12,7 +13,12 @@ const mdxComponents = {
   ),
 }
 
-export default function Post({ meta, children }) {
+export default function Post({ meta, children, posts }) {
+  const router = useRouter()
+  const postIndex = posts.findIndex((post) => post.link === router.pathname)
+  const previous = posts[postIndex + 1]
+  const next = posts[postIndex - 1]
+
   return (
     <article className="xl:divide-y xl:divide-gray-200">
       <header className="xl:pb-10">
@@ -68,22 +74,26 @@ export default function Post({ meta, children }) {
         </div>
         <footer className="text-sm font-medium leading-5 divide-y divide-gray-200 xl:col-start-1 xl:row-start-2">
           <div className="space-y-8 py-8">
-            <div>
-              <h2 className="text-xs tracking-wide uppercase text-gray-500">Next Article</h2>
-              <div className="text-teal-500">
-                <Link href="/">
-                  <a>Introducing the official IntelliSense VS Code Plugin</a>
-                </Link>
+            {next && (
+              <div>
+                <h2 className="text-xs tracking-wide uppercase text-gray-500">Next Article</h2>
+                <div className="text-teal-500">
+                  <Link href={next.link}>
+                    <a>{next.title}</a>
+                  </Link>
+                </div>
               </div>
-            </div>
-            <div>
-              <h2 className="text-xs tracking-wide uppercase text-gray-500">Previous Article</h2>
-              <div className="text-teal-500">
-                <Link href="/">
-                  <a>Introducing the official IntelliSense VS Code Plugin</a>
-                </Link>
+            )}
+            {previous && (
+              <div>
+                <h2 className="text-xs tracking-wide uppercase text-gray-500">Previous Article</h2>
+                <div className="text-teal-500">
+                  <Link href={previous.link}>
+                    <a>{previous.title}</a>
+                  </Link>
+                </div>
               </div>
-            </div>
+            )}
           </div>
           <div className="pt-8">
             <Link href="/">

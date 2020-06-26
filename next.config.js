@@ -81,8 +81,9 @@ module.exports = withBundleAnalyzer({
             createLoader(function (src) {
               const content = [
                 'import Post from "@/components/Post"',
+                'export { getStaticProps } from "@/getStaticProps"',
                 src,
-                'export default ({ children }) => <Post meta={meta}>{children}</Post>',
+                'export default (props) => <Post meta={meta} {...props} />',
               ].join('\n')
 
               if (content.includes('<!--more-->')) {

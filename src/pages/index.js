@@ -3,20 +3,9 @@ import Link from 'next/link'
 import Head from 'next/head'
 import Header from '@/components/Header'
 import PageTitle from '@/components/PageTitle'
+import getAllPostPreviews from '@/getAllPostPreviews'
 
-function importAll(r) {
-  return r.keys().map((fileName) => ({ link: fileName.replace(/\.mdx$/, ''), module: r(fileName) }))
-}
-
-function dateSortDesc(a, b) {
-  if (a > b) return -1
-  if (a < b) return 1
-  return 0
-}
-
-const posts = importAll(require.context('./?preview', false, /\.mdx$/)).sort((a, b) =>
-  dateSortDesc(a.module.meta.date, b.module.meta.date)
-)
+const posts = getAllPostPreviews()
 
 export default function Home() {
   return (
