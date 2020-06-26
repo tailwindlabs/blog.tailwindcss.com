@@ -14,14 +14,19 @@
     "@tailwindcss/ui": "^0.3.0",
     "autoprefixer": "^9.8.4",
     "next": "9.4.4",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
+    "preact": "^10.4.4",
+    "preact-render-to-string": "^5.1.4",
+    "react": "github:preact-compat/react#1.0.0",
+    "react-dom": "github:preact-compat/react-dom#1.0.0",
+    "react-ssr-prepass": "npm:preact-ssr-prepass@^1.0.1",
     "tailwindcss": "^1.4.6",
     "tinytime": "^0.2.6"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^9.4.4",
+    "@prefresh/next": "^0.3.0",
     "file-loader": "^6.0.0",
+    "react-refresh": "^0.8.3",
     "simple-functional-loader": "^1.2.1"
   }
 }
