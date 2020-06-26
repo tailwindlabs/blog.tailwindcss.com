@@ -1,6 +1,16 @@
 import PageTitle from '@/components/PageTitle'
 import tinytime from 'tinytime'
 import Link from 'next/link'
+import { MDXProvider } from '@mdx-js/react'
+
+const mdxComponents = {
+  pre: ({ className, ...props }) => (
+    <pre className={`${className} rounded-md bg-gray-800 py-3 px-4 overflow-x-auto`} {...props} />
+  ),
+  'pre.code': ({ className, ...props }) => (
+    <code className={`${className} text-gray-200`} {...props} />
+  ),
+}
 
 export default function Post({ meta, children }) {
   return (
@@ -53,7 +63,9 @@ export default function Post({ meta, children }) {
             </ul>
           </dd>
         </dl>
-        <div className="py-10 xl:pb-0 xl:col-span-3 xl:row-span-2">{children}</div>
+        <div className="prose py-10 xl:pb-0 xl:col-span-3 xl:row-span-2">
+          <MDXProvider components={mdxComponents}>{children}</MDXProvider>
+        </div>
         <footer className="text-sm font-medium leading-5 divide-y divide-gray-200 xl:col-start-1 xl:row-start-2">
           <div className="space-y-8 py-8">
             <div>
