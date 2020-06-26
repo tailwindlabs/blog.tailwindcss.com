@@ -1,5 +1,5 @@
 import PageTitle from '@/components/PageTitle'
-import { format } from 'date-fns'
+import tinytime from 'tinytime'
 import Link from 'next/link'
 
 export default function Post({ meta, children }) {
@@ -19,7 +19,9 @@ export default function Post({ meta, children }) {
             <div>
               <dt className="sr-only">Published on</dt>
               <dd className="text-base leading-6 font-medium text-gray-500">
-                <time dateTime={meta.date}>{format(new Date(meta.date), 'EEEE, LLLL d, y')}</time>
+                <time dateTime={meta.date}>
+                  {tinytime('{dddd}, {MMMM} {DD}, {YYYY}').render(new Date(meta.date))}
+                </time>
               </dd>
             </div>
           </dl>

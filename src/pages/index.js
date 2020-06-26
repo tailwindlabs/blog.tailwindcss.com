@@ -1,4 +1,4 @@
-import { format } from 'date-fns'
+import tinytime from 'tinytime'
 import Link from 'next/link'
 import Head from 'next/head'
 import Header from '@/components/Header'
@@ -35,7 +35,9 @@ export default function Home() {
                 <dl>
                   <dt className="sr-only">Published on</dt>
                   <dd className="text-base leading-6 font-medium text-gray-500">
-                    <time dateTime={meta.date}>{format(new Date(meta.date), 'LLLL d, y')}</time>
+                    <time dateTime={meta.date}>
+                      {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(meta.date))}
+                    </time>
                   </dd>
                 </dl>
                 <div className="space-y-5 xl:col-span-3">
