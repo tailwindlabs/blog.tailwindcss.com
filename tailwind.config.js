@@ -1,11 +1,11 @@
-const { fontFamily } = require('tailwindcss/defaultTheme')
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   purge: { content: ['./src/**/*.{js,mdx}', './next.config.js'], mode: 'all' },
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter var', ...fontFamily.sans],
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         code: {
@@ -17,12 +17,21 @@ module.exports = {
           white: '#fff',
         },
       },
+      typography: {
+        bullets: 'line',
+        linkColor: [
+          '#bada55',
+          {
+            hover: '#facade',
+          },
+        ],
+      },
     },
   },
   variants: {},
   plugins: [
     require('@tailwindcss/ui'),
-    function ({ addBase }) {
+    function ({ addBase, addComponents, theme }) {
       addBase([
         {
           '@font-face': {
@@ -45,6 +54,136 @@ module.exports = {
           },
         },
       ])
+
+      addComponents({
+        '.prose': {
+          '> :first-child': {
+            marginTop: '0',
+          },
+          '> :last-child': {
+            marginBottom: '0',
+          },
+
+          fontSize: theme('fontSize.base'),
+          lineHeight: theme('lineHeight.7'),
+          color: theme('colors.gray.700'),
+          p: {
+            marginTop: theme('spacing.5'),
+            marginBottom: theme('spacing.5'),
+          },
+          h2: {
+            marginTop: theme('spacing.12'),
+            marginBottom: theme('spacing.6'),
+            fontSize: theme('fontSize.2xl'),
+            fontWeight: '700',
+            lineHeight: theme('lineHeight.8'),
+            letterSpacing: theme('letterSpacing.tight'), // Consider removing
+            color: theme('colors.gray.900'),
+          },
+          h3: {
+            marginTop: theme('spacing.8'),
+            marginBottom: theme('spacing.3'),
+            fontSize: theme('fontSize.xl'),
+            fontWeight: '600',
+            lineHeight: theme('lineHeight.8'),
+            color: theme('colors.gray.900'),
+          },
+          'h3 + *': {
+            marginTop: '0',
+          },
+          ol: {
+            counterReset: 'list-counter',
+            marginTop: theme('spacing.5'),
+            marginBottom: theme('spacing.5'),
+          },
+          ul: {
+            marginTop: theme('spacing.5'),
+            marginBottom: theme('spacing.5'),
+          },
+          li: {
+            marginTop: theme('spacing.2'),
+            marginBottom: theme('spacing.2'),
+          },
+          'ol li': {
+            position: 'relative',
+            counterIncrement: 'list-counter',
+            paddingLeft: theme('spacing.9'),
+          },
+          'ol li:before': {
+            content: 'counter(list-counter) "."',
+            position: 'absolute',
+            left: '0',
+            width: '1.5rem',
+            textAlign: 'right',
+          },
+          'ul li': {
+            position: 'relative',
+            paddingLeft: theme('spacing.9'),
+          },
+          'ul li:before': {
+            content: '""',
+            position: 'absolute',
+            top: 'calc(0.875em - 0.0625em)',
+            left: '0.5em',
+            backgroundColor: theme('colors.gray.400'),
+            height: '0.125em',
+            width: '0.75em',
+          },
+          img: {
+            marginTop: theme('spacing.8'),
+            marginBottom: theme('spacing.8'),
+          },
+          video: {
+            marginTop: theme('spacing.8'),
+            marginBottom: theme('spacing.8'),
+          },
+          figure: {
+            marginTop: theme('spacing.8'),
+            marginBottom: theme('spacing.8'),
+          },
+          code: {
+            fontSize: theme('fontSize.sm'),
+            lineHeight: theme('lineHeight.7'),
+            fontFamily: theme('fontFamily.mono').join(', '),
+            color: theme('colors.gray.700'),
+            backgroundColor: theme('colors.gray.50'),
+            borderColor: theme('colors.gray.200'),
+            borderWidth: theme('borderWidth.default'),
+            borderRadius: theme('borderRadius.md'),
+            paddingTop: theme('spacing.1'),
+            paddingRight: theme('spacing[1.5]'),
+            paddingBottom: theme('spacing.1'),
+            paddingLeft: theme('spacing[1.5]'),
+          },
+          a: {
+            color: theme('colors.gray.900'),
+            textDecoration: 'underline',
+          },
+          pre: {
+            color: theme('colors.gray.200'),
+            fontSize: theme('fontSize.sm'),
+            fontFamily: theme('fontFamily.mono').join(', '),
+            lineHeight: theme('lineHeight.6'),
+            borderRadius: theme('borderRadius.md'),
+            backgroundColor: theme('colors.gray.800'),
+            paddingTop: theme('spacing.3'),
+            paddingRight: theme('spacing.4'),
+            paddingBottom: theme('spacing.3'),
+            paddingLeft: theme('spacing.4'),
+            overflowX: 'auto',
+          },
+          'pre code': {
+            backgroundColor: 'transparent',
+            borderWidth: '0',
+            borderRadius: '0',
+            padding: '0',
+            color: 'inherit',
+            fontSize: 'inherit',
+            fontFamily: 'inherit',
+            lineHeight: 'inherit',
+          },
+        },
+      })
     },
   ],
 }
