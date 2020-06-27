@@ -22,15 +22,7 @@ export default function Post({ meta, children, posts }) {
   return (
     <article className="xl:divide-y xl:divide-gray-200">
       <header className="xl:pb-10">
-        <div className="space-y-1">
-          <div>
-            <div className="text-sm uppercase font-medium leading-6 text-teal-500 tracking-wide">
-              <Link href="/">
-                <a>News</a>
-              </Link>
-            </div>
-            <PageTitle>{meta.title}</PageTitle>
-          </div>
+        <div className="space-y-1 text-center">
           <dl className="space-y-10">
             <div>
               <dt className="sr-only">Published on</dt>
@@ -41,6 +33,9 @@ export default function Post({ meta, children, posts }) {
               </dd>
             </div>
           </dl>
+          <div>
+            <PageTitle>{meta.title}</PageTitle>
+          </div>
         </div>
       </header>
       <div
@@ -50,7 +45,7 @@ export default function Post({ meta, children, posts }) {
         <dl className="py-10 xl:border-b xl:border-gray-200">
           <dt className="sr-only">Authors</dt>
           <dd>
-            <ul className="flex xl:block space-x-8 sm:space-x-12 xl:space-x-0 xl:space-y-8">
+            <ul className="flex justify-center xl:block space-x-8 sm:space-x-12 xl:space-x-0 xl:space-y-8">
               {meta.authors.map((author) => (
                 <li key={author.twitter} className="flex items-center space-x-2">
                   <img src={author.avatar} alt="" className="w-10 h-10 rounded-full" />

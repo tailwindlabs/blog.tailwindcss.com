@@ -4,6 +4,12 @@ module.exports = {
   purge: { content: ['./src/**/*.{js,mdx}', './next.config.js'], mode: 'all' },
   theme: {
     extend: {
+      lineHeight: {
+        '11': '2.75rem',
+        '12': '3rem',
+        '13': '3.25rem',
+        '14': '3.5rem',
+      },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
@@ -107,24 +113,24 @@ module.exports = {
           'ol li': {
             position: 'relative',
             counterIncrement: 'list-counter',
-            paddingLeft: theme('spacing.9'),
+            paddingLeft: theme('spacing.8'),
           },
           'ol li:before': {
             content: 'counter(list-counter) "."',
             position: 'absolute',
             left: '0',
-            width: '1.5rem',
-            textAlign: 'right',
+            fontWeight: '600',
+            color: theme('colors.gray.500'),
           },
           'ul li': {
             position: 'relative',
-            paddingLeft: theme('spacing.9'),
+            paddingLeft: theme('spacing.8'),
           },
           'ul li:before': {
             content: '""',
             position: 'absolute',
             top: 'calc(0.875em - 0.0625em)',
-            left: '0.5em',
+            left: '0',
             backgroundColor: theme('colors.gray.400'),
             height: '0.125em',
             width: '0.75em',
