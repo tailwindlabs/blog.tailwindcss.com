@@ -24,6 +24,14 @@ export default function Post({ meta, children, posts }) {
     <article className="xl:divide-y xl:divide-gray-200">
       <Head>
         <title>{meta.title} – Tailwind CSS</title>
+        <meta name="twitter:title" content={`${meta.title} – Tailwind CSS`} />
+        <meta name="twitter:description" content={meta.description} />
+        <meta name="twitter:image" content={`https://blog.tailwindcss.com${meta.image}`} />
+        <meta property="og:url" content={`https://blog.tailwindcss.com${router.pathname}`} />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={`${meta.title} – Tailwind CSS`} />
+        <meta property="og:description" content={meta.description} />
+        <meta property="og:image" content={`https://blog.tailwindcss.com${meta.image}`} />
       </Head>
       <header className="xl:pb-10">
         <div className="space-y-1 text-center">
