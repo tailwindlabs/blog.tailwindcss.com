@@ -4,7 +4,7 @@ import SectionContainer from '@/components/SectionContainer'
 
 export default function App({ Component, pageProps }) {
   return (
-    <div>
+    <div className="antialiased">
       <SectionContainer>
         <Header />
       </SectionContainer>
