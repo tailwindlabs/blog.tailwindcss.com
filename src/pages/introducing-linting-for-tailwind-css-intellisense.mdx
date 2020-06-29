@@ -1,4 +1,8 @@
 import { bradlc } from '@/authors'
+import imgCss from '@/img/linting/css.png'
+import imgCss2x from '@/img/linting/css@2x.png'
+import imgHtml from '@/img/linting/html.png'
+import imgHtml2x from '@/img/linting/html@2x.png'
 
 export const meta = {
   title: 'Introducing linting for Tailwind CSS IntelliSense',
@@ -15,10 +19,12 @@ Today we’re releasing a new version of the [Tailwind CSS IntelliSense extensio
 Tailwind already detects CSS errors, for example when you mistype a screen name in the `@screen` directive. The linting feature for Tailwind CSS IntelliSense surfaces these errors and displays them in context, directly inside your editor. The linter will validate your `@tailwind`, `@screen`, `@variants` and `@apply` directives, as well as any `theme` function calls:
 
 <img
-  width="2080"
-  height="1170"
+  width="1524"
+  height="857"
   alt="Screen capture showing CSS linting in action"
-  src="https://user-images.githubusercontent.com/2615508/85407341-03492c80-b55b-11ea-9941-4f0ad51e6142.png"
+  src={imgCss}
+  srcset={`${imgCss} 762w, ${imgCss2x} 1524w`}
+  sizes="(min-width: 640px) calc(100vw - 3rem), (min-width: 768px) 45rem, (min-width: 1280px) 51rem, calc(100vw - 2rem)"
 />
 
 ## Catching conflicts in your HTML
@@ -26,10 +32,12 @@ Tailwind already detects CSS errors, for example when you mistype a screen name 
 There is one more lint rule which analyses class lists in your template files and highlights any instances where utilities seem to be in conflict. For example you probably didn’t intend to have `mt-4` and `mt-6` in the same class list!
 
 <img
-  width="2080"
-  height="1170"
+  width="1524"
+  height="857"
   alt="Screen capture showing markup linting in action"
-  src="https://user-images.githubusercontent.com/2615508/85407360-080de080-b55b-11ea-808b-c4ad9daf9a99.png"
+  src={imgHtml}
+  srcset={`${imgHtml} 762w, ${imgHtml2x} 1524w`}
+  sizes="(min-width: 640px) calc(100vw - 3rem), (min-width: 768px) 45rem, (min-width: 1280px) 51rem, calc(100vw - 2rem)"
 />
 
 ## Quick fixes included
