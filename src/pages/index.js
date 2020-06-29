@@ -1,5 +1,6 @@
 import tinytime from 'tinytime'
 import Link from 'next/link'
+import Head from 'next/head'
 import PageTitle from '@/components/PageTitle'
 import getAllPostPreviews from '@/getAllPostPreviews'
 
@@ -8,6 +9,9 @@ const posts = getAllPostPreviews()
 export default function Home() {
   return (
     <div className="divide-y divide-gray-200">
+      <Head>
+        <title>Blog – Tailwind CSS</title>
+      </Head>
       <div className="pb-8 space-y-5">
         <PageTitle>Blog</PageTitle>
         <p className="text-lg leading-7 text-gray-500">

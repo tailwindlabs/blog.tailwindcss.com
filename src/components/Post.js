@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import PageTitle from '@/components/PageTitle'
 import tinytime from 'tinytime'
 import Link from 'next/link'
@@ -21,6 +22,9 @@ export default function Post({ meta, children, posts }) {
 
   return (
     <article className="xl:divide-y xl:divide-gray-200">
+      <Head>
+        <title>{meta.title} – Tailwind CSS</title>
+      </Head>
       <header className="xl:pb-10">
         <div className="space-y-1 text-center">
           <dl className="space-y-10">
