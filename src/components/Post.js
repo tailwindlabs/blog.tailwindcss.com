@@ -36,7 +36,7 @@ export default function Post({ meta, children, posts }) {
         <meta property="og:description" content={meta.description} />
         <meta property="og:image" content={`https://blog.tailwindcss.com${meta.image}`} />
       </Head>
-      <header className="xl:pb-10">
+      <header className="pt-6 xl:pb-10">
         <div className="space-y-1 text-center">
           <dl className="space-y-10">
             <div>
@@ -57,7 +57,7 @@ export default function Post({ meta, children, posts }) {
         className="divide-y xl:divide-y-0 divide-gray-200 xl:grid xl:grid-cols-4 xl:col-gap-6 pb-16 xl:pb-20"
         style={{ gridTemplateRows: 'auto 1fr' }}
       >
-        <dl className="py-10 xl:border-b xl:border-gray-200">
+        <dl className="pt-6 pb-10 xl:border-b xl:border-gray-200">
           <dt className="sr-only">Authors</dt>
           <dd>
             <ul className="flex justify-center xl:block space-x-8 sm:space-x-12 xl:space-x-0 xl:space-y-8">
@@ -114,7 +114,7 @@ export default function Post({ meta, children, posts }) {
           )}
           <div className="pt-8">
             <Link href="/">
-              <a className="text-teal-500 hover:text-teal-600">View all posts</a>
+              <a className="text-teal-500 hover:text-teal-600">&larr; Back to the blog</a>
             </Link>
           </div>
         </footer>
