@@ -21,6 +21,9 @@ const tokenClassNames = {
 
 module.exports = withBundleAnalyzer({
   pageExtensions: ['js', 'jsx', 'mdx'],
+  experimental: {
+    modern: true,
+  },
   webpack: (config, options) => {
     config.module.rules.push({
       test: /\.(png|jpe?g|gif)$/i,
