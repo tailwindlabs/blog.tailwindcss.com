@@ -24,6 +24,9 @@ export default function Post({ meta, children, posts }) {
     <article className="xl:divide-y xl:divide-gray-200">
       <Head>
         <title>{meta.title} – Tailwind CSS</title>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@tailwindcss" />
+        <meta name="twitter:creator" content="@tailwindcss" />
         <meta name="twitter:title" content={`${meta.title} – Tailwind CSS`} />
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={`https://blog.tailwindcss.com${meta.image}`} />
