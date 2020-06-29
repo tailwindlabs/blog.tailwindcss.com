@@ -58,7 +58,10 @@ export default function Post({ meta, children, posts }) {
                     <dd className="text-gray-900">{author.name}</dd>
                     <dt className="sr-only">Twitter</dt>
                     <dd>
-                      <a href={`https://twitter.com/${author.twitter}`} className="text-teal-500">
+                      <a
+                        href={`https://twitter.com/${author.twitter}`}
+                        className="text-teal-500 hover:text-teal-600"
+                      >
                         {author.twitter}
                       </a>
                     </dd>
@@ -77,7 +80,7 @@ export default function Post({ meta, children, posts }) {
               {next && (
                 <div>
                   <h2 className="text-xs tracking-wide uppercase text-gray-500">Next Article</h2>
-                  <div className="text-teal-500">
+                  <div className="text-teal-500 hover:text-teal-600">
                     <Link href={next.link}>
                       <a>{next.title}</a>
                     </Link>
@@ -89,7 +92,7 @@ export default function Post({ meta, children, posts }) {
                   <h2 className="text-xs tracking-wide uppercase text-gray-500">
                     Previous Article
                   </h2>
-                  <div className="text-teal-500">
+                  <div className="text-teal-500 hover:text-teal-600">
                     <Link href={previous.link}>
                       <a>{previous.title}</a>
                     </Link>
@@ -100,7 +103,7 @@ export default function Post({ meta, children, posts }) {
           )}
           <div className="pt-8">
             <Link href="/">
-              <a className="text-teal-500">View all posts</a>
+              <a className="text-teal-500 hover:text-teal-600">View all posts</a>
             </Link>
           </div>
         </footer>

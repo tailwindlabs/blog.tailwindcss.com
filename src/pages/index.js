@@ -44,7 +44,10 @@ export default function Home() {
                   </div>
                   <div className="text-base leading-6 font-medium">
                     <Link href={link}>
-                      <a className="text-teal-500" aria-label={`Read "${meta.title}"`}>
+                      <a
+                        className="text-teal-500 hover:text-teal-600"
+                        aria-label={`Read "${meta.title}"`}
+                      >
                         Read more &rarr;
                       </a>
                     </Link>
