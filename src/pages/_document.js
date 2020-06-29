@@ -35,7 +35,15 @@ export default class Document extends NextDocument {
   render() {
     return (
       <Html lang="en">
-        <InlineStylesHead />
+        <InlineStylesHead>
+          <link
+            rel="preload"
+            href="/fonts/Inter-roman.var-subset.woff2?3.13"
+            as="font"
+            type="font/woff2"
+            crossOrigin="true"
+          />
+        </InlineStylesHead>
         <body>
           <Main />
           <NextScript />
