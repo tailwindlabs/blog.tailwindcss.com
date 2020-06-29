@@ -2,6 +2,7 @@ import tinytime from 'tinytime'
 import Link from 'next/link'
 import Head from 'next/head'
 import getAllPostPreviews from '@/getAllPostPreviews'
+import twitterCard from '@/img/twitter-card.jpg'
 
 const posts = getAllPostPreviews()
 
@@ -9,6 +10,17 @@ export default function Home() {
   return (
     <div className="divide-y divide-gray-200">
       <Head>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@tailwindcss" />
+        <meta name="twitter:creator" content="@tailwindcss" />
+        <meta name="twitter:title" content="Blog – Tailwind CSS" />
+        <meta name="twitter:description" content="News content from the Tailwind CSS team." />
+        <meta name="twitter:image" content={`https://blog.tailwindcss.com${twitterCard}`} />
+        <meta property="og:url" content="https://blog.tailwindcss.com" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="Blog – Tailwind CSS" />
+        <meta property="og:description" content="News content from the Tailwind CSS team." />
+        <meta property="og:image" content={`https://blog.tailwindcss.com${twitterCard}`} />
         <title>Blog – Tailwind CSS</title>
       </Head>
       <div className="pt-6 pb-8 space-y-2 md:space-y-5">
