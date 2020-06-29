@@ -1,7 +1,5 @@
 import tinytime from 'tinytime'
 import Link from 'next/link'
-import Head from 'next/head'
-import Header from '@/components/Header'
 import PageTitle from '@/components/PageTitle'
 import getAllPostPreviews from '@/getAllPostPreviews'
 
