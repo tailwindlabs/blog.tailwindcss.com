@@ -86,14 +86,16 @@ export default function Post({ meta, children, posts }) {
           <div className="prose pt-10 pb-8">
             <MDXProvider components={mdxComponents}>{children}</MDXProvider>
           </div>
-          <div className="pt-6 pb-16">
-            <p>
-              Want to talk about this post?{' '}
-              <a href={meta.discussion} className="font-medium text-teal-500 hover:text-teal-600">
-                Discuss this on GitHub &rarr;
-              </a>
-            </p>
-          </div>
+          {meta.discussion && (
+            <div className="pt-6 pb-16">
+              <p>
+                Want to talk about this post?{' '}
+                <a href={meta.discussion} className="font-medium text-teal-500 hover:text-teal-600">
+                  Discuss this on GitHub &rarr;
+                </a>
+              </p>
+            </div>
+          )}
         </div>
         <footer className="text-sm font-medium leading-5 divide-y divide-gray-200 xl:col-start-1 xl:row-start-2">
           {(next || previous) && (
