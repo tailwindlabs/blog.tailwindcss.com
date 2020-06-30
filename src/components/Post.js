@@ -57,7 +57,7 @@ export default function Post({ meta, children, posts }) {
         className="divide-y xl:divide-y-0 divide-gray-200 xl:grid xl:grid-cols-4 xl:col-gap-6 pb-16 xl:pb-20"
         style={{ gridTemplateRows: 'auto 1fr' }}
       >
-        <dl className="pt-6 pb-10 xl:border-b xl:border-gray-200">
+        <dl className="pt-6 pb-10 xl:pt-11 xl:border-b xl:border-gray-200">
           <dt className="sr-only">Authors</dt>
           <dd>
             <ul className="flex justify-center xl:block space-x-8 sm:space-x-12 xl:space-x-0 xl:space-y-8">
