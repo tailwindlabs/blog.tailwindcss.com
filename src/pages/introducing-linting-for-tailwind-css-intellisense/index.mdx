@@ -4,6 +4,7 @@ import imgCss2x from './css@2x.png'
 import imgHtml from './html.png'
 import imgHtml2x from './html@2x.png'
 import image from './card.jpeg'
+import applyQuickFixVideo from './apply-quick-fix.mp4'
 
 export const meta = {
   title: 'Introducing linting for Tailwind CSS IntelliSense',
@@ -49,7 +50,9 @@ There is one more lint rule which analyses class lists in your template files an
 
 To make it as easy as possible to fix any issues, all of the lint rules have their own "quick fixes" which can be triggered directly within Visual Studio Code. If you accidentally typed `@screen small` instead of `@screen sm`, the editor can automatically replace `small` with `sm` for you!
 
-As well as simple text replacements there’s also some more interesting quick fixes for the more complex lint rules. Take a look at how the extension can automatically refactor an invalid `@apply` directive: https://twitter.com/bradlc/status/1273271040886611976
+As well as simple text replacements there’s also some more interesting quick fixes for the more complex lint rules. Take a look at how the extension can automatically refactor an invalid `@apply` directive:
+
+<video src={applyQuickFixVideo} width="1600" height="900" controls />
 
 ## Configuration
 
