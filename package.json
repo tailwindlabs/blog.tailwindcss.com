@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build && next export && npm run build:rss",
     "start": "next start",
-    "build:rss": "node ./.next/server/scripts/build-rss.js && cp ./.next/static/feed.xml ./out/feed.xml"
+    "build:rss": "node ./.next/server/scripts/build-rss.js"
   },
   "dependencies": {
     "@mapbox/rehype-prism": "^0.5.0",
