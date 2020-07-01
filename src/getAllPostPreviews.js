@@ -1,7 +1,10 @@
 function importAll(r) {
   return r
     .keys()
-    .map((fileName) => ({ link: fileName.replace(/\/index\.mdx$/, ''), module: r(fileName) }))
+    .map((fileName) => ({
+      link: fileName.substr(1).replace(/\/index\.mdx$/, ''),
+      module: r(fileName),
+    }))
 }
 
 function dateSortDesc(a, b) {
