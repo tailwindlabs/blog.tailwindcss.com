@@ -2,5 +2,5 @@
 @tailwind base;
 /* purgecss end ignore */
 
-@tailwind utilities;
 @tailwind components;
+@tailwind utilities;
