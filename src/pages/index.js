@@ -51,7 +51,7 @@ export default function Home() {
                         <a className="text-gray-900">{meta.title}</a>
                       </Link>
                     </h2>
-                    <div className="prose text-gray-500">
+                    <div className="prose max-w-none text-gray-500">
                       <Component />
                     </div>
                   </div>
