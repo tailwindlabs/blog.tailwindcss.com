@@ -6,6 +6,8 @@ import twitterCard from '@/img/twitter-card.jpg'
 
 const posts = getAllPostPreviews()
 
+const postDateTemplate = tinytime('{MMMM} {DD}, {YYYY}')
+
 export default function Home() {
   return (
     <div className="divide-y divide-gray-200">
@@ -39,9 +41,7 @@ export default function Home() {
                 <dl>
                   <dt className="sr-only">Published on</dt>
                   <dd className="text-base leading-6 font-medium text-gray-500">
-                    <time dateTime={meta.date}>
-                      {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(meta.date))}
-                    </time>
+                    <time dateTime={meta.date}>{postDateTemplate.render(new Date(meta.date))}</time>
                   </dd>
                 </dl>
                 <div className="space-y-5 xl:col-span-3">
