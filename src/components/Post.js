@@ -14,6 +14,8 @@ const mdxComponents = {
   ),
 }
 
+const postDateTemplate = tinytime('{dddd}, {MMMM} {DD}, {YYYY}')
+
 export default function Post({ meta, children, posts }) {
   const router = useRouter()
   const postIndex = posts.findIndex((post) => post.link === router.pathname)
@@ -42,9 +44,7 @@ export default function Post({ meta, children, posts }) {
             <div>
               <dt className="sr-only">Published on</dt>
               <dd className="text-base leading-6 font-medium text-gray-500">
-                <time dateTime={meta.date}>
-                  {tinytime('{dddd}, {MMMM} {DD}, {YYYY}').render(new Date(meta.date))}
-                </time>
+                <time dateTime={meta.date}>{postDateTemplate.render(new Date(meta.date))}</time>
               </dd>
             </div>
           </dl>
