@@ -18,7 +18,7 @@
     "next": "9.4.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "tailwindcss": "^1.4.6",
+    "tailwindcss": "^1.6.0",
     "tinytime": "^0.2.6"
   },
   "devDependencies": {
