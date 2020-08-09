@@ -1,12 +1,13 @@
 import { adamwathan } from '@/authors'
-import image from './card.jpg'
+import cardImage from './card.jpg'
+import robinImage from './robin.jpg'
 
 export const meta = {
   title: 'From Nine Hundred to One: How We Hired Robin Malfait',
   description: `Back in May we published our first job posting for a full-stack developer to join our team. This is the story of how we worked through almost 900 applications, and eventually hired Robin Malfait, a talented developer from Belgium who is starting with us today.`,
   date: '2020-08-10T15:00:00.000Z',
   authors: [adamwathan],
-  image,
+  image: cardImage,
   // discussion: 'https://github.com/tailwindcss/tailwindcss/discussions/2043',
 }
 
@@ -15,6 +16,8 @@ Back in May we published [our first job posting](https://jobs.tailwindui.com/ful
 After receiving almost 900 applications and interviewing dozens of talented people, we're excited to finally share that [Robin Malfait](https://twitter.com/malfaitrobin) accepted our offer for the position and is officially part of the Tailwind Labs team as of today!
 
 <!--more-->
+
+<img src={robinImage} alt="" />
 
 Robin is a talented developer from Belgium, and has been an active member of the Tailwind community for a long time. If you're a Tailwind UI customer and have ever asked a question in the `#react` channel on our Discord server, there's a 90% chance he's the helpful person who answered your question. He even built a [bookmarklet](https://gist.github.com/RobinMalfait/a90e8651196c273dfa51eec0f43e1676) to help people convert Tailwind UI components to JSX!
 
@@ -73,11 +76,11 @@ Robin's was one of maybe 40-50 that _really_ stood out from a content perspectiv
 
 ## Filtering the Applications
 
-Dealing with almost 900 job applications is hard work. Over half of them we were able to discard immediately because they just provided a link to their LinkedIn profile or a generic resume, but filtering through the rest was really tough.
+Dealing with almost 900 job applications is a lot of work. Over half of them we were able to discard immediately because they just provided a link to their LinkedIn profile or a generic resume, but filtering through the rest was really tough.
 
 I've never hired anyone this way before, and at first I really felt like we needed to meet with and interview _everyone_ who submitted a quality application. As the applications poured in though, I realized this was just not practical, and that we had to put some sort of cap on it.
 
-I decided to basically sort the good applications as best I could, then just slice off the top 20 and start there. It meant there were lots of great people we wouldn't talk to and that maybe we even missed out on the absolute best applicant, but the reality is we just only have so much time we can dedicate to this, and I had to believe that out of the ~20 best applications, there would certainly be _multiple_ people we wouldn't regret hiring at all, even if the absolute best person was somewhere in the other 30.
+I decided to sort the good applications as best I could, then just slice off the top 20 and start there. It meant there were lots of great people we wouldn't talk to and that maybe we even missed out on the absolute best applicant, but the reality is that we only have so much time we can dedicate to this, and I had to believe that out of the ~20 best applications, there would certainly be _multiple_ people we wouldn't regret hiring at all, even if there was a chance that the absolute best person was somewhere in the other 30.
 
 ## The Interview Process
 
@@ -100,11 +103,13 @@ We provided a zip file containing all of the instructions, the design as a Figma
 
 [**See the take-home project on GitHub &rarr;**](https://github.com/adamwathan/tailwind-take-home-project)
 
-We tried to give incredibly clear instructions, and made sure to point out where we wanted people to focus their time, and what areas we didn't want them to overthink or spend too much time on.
+We tried to give very clear instructions, and made sure to point out where we wanted people to focus their time, and what areas we didn't want them to overthink or spend too much time on.
 
 We gave each candidate about two weeks to complete the project, just to make sure they had the opportunity to fit it into their schedule without it being disruptive.
 
-All of the submissions we got back were great, but again we forced ourselves to limit the candidate for the next phase, this time down to 6 people.
+All of the submissions we got back were great, but again we forced ourselves to limit the candidates for the next phase, this time down to 6 people.
+
+One thing we really loved about Robin's submission was that he spent a lot of time guiding us through his solution with comments in the code. For regular production code I would say it was definitely overkill, but as part of a job application I thought it was extremely helpful to get a behind-the-scenes look into how he actually _thinks_ about the code he is writing. He also spent a lot of time describing alternate solutions to certain problems and why he didn't go with those approaches, which was very beneficial as well.
 
 ## Pairing Session
 
@@ -123,10 +128,11 @@ Some of the things I paired on included:
 
 - Building a date picker from scratch
 - Learning XState
-- Building an SVG charting library with Svelte
 - Building a modal dialog with the Vue 3 composition API
 
 I really enjoyed this process and am very proud of how we put it together. It was definitely the most informative part of the interview process and really gave me a ton of confidence that we were offering the job to the right person.
+
+For Robin's session, we decided to build an SVG charting library from scratch _(something neither of us had ever done before)_, in Svelte _(a framework neither of us had ever used before)_. This was Robin's idea, and that he had the courage to tackle two completely new problems at the same time _in an interview context_ really impressed me. We had a great time pairing together on this, and not once in the session did it ever feel like either of us was ahead of the other person or trying to catch them up on something. We had really great chemistry and it felt very energizing and productive, and reminded me of some of the best pairing sessions I've had in my career, which is pretty incredible given we'd never worked together before, and that he was being evaluated for a job.
 
 ## Making the offer
 
