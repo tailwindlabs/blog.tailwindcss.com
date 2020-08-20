@@ -37,6 +37,7 @@ export default function Post({ meta, children, posts }) {
         <meta property="og:title" content={`${meta.title} – Tailwind CSS`} />
         <meta property="og:description" content={meta.description} />
         <meta property="og:image" content={`https://blog.tailwindcss.com${meta.image}`} />
+        <meta name="description" content={meta.description}></meta>
       </Head>
       <header className="pt-6 xl:pb-10">
         <div className="space-y-1 text-center">
