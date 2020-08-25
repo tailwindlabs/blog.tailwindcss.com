@@ -26,7 +26,7 @@ module.exports = withBundleAnalyzer({
   },
   webpack: (config, options) => {
     config.module.rules.push({
-      test: /\.(png|jpe?g|gif|mp4)$/i,
+      test: /\.(svg|png|jpe?g|gif|mp4)$/i,
       use: [
         {
           loader: 'file-loader',
