@@ -1,6 +1,7 @@
 import adamwathanAvatar from './img/adamwathan.jpg'
 import bradlcAvatar from './img/bradlc.jpg'
 import steveschogerAvatar from './img/steveschoger.jpg'
+import robinmalfaitAvatar from './img/robinmalfait.jpg'
 
 export const adamwathan = {
   name: 'Adam Wathan',
@@ -18,4 +19,10 @@ export const steveschoger = {
   name: 'Steve Schoger',
   twitter: '@steveschoger',
   avatar: steveschogerAvatar,
+}
+
+export const robinmalfait = {
+  name: 'Robin Malfait',
+  twitter: '@malfaitrobin',
+  avatar: robinmalfaitAvatar,
 }
