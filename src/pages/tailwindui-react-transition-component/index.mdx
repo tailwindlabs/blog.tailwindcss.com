@@ -1,0 +1,221 @@
+import { robinmalfait } from '@/authors'
+import image from './card.jpg'
+
+export const meta = {
+  title: 'Tailwind UI - React Transition',
+  description: `Tailwind CSS v1.7.0 is now available, with gradients and more!`,
+  date: '2020-08-25T10:00:00.000Z',
+  authors: [robinmalfait],
+  image,
+  discussion: 'https://github.com/tailwindlabs/tailwindcss/discussions/2183',
+}
+
+Introducing the first component of the `@tailwindui/react` collection, a set of Tailwind-ready component primitives.
+
+<!--more-->
+
+## Transition
+
+Today I am happy to announce that we are releasing our first React component, a
+Transition component under the `@tailwindui/react` umbrella.
+
+https://github.com/tailwindlabs/tailwindui-react
+
+Here is a codesandbox example for you:
+
+<iframe
+  src="https://codesandbox.io/embed/dreamy-villani-1lz49?fontsize=14&hidenavigation=1&module=%2Fsrc%2FApp.js&view=preview"
+  style={{ height: 500 }}
+  className="w-full rounded overflow-hidden"
+  title="dreamy-villani-1lz49"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+/>
+
+---
+
+## Lab Notes
+
+**TL;DR Overview:**
+
+- The basic _transition_ functionality is the easy part
+- `useLayoutEffect` vs `useEffect`
+- Cancelling transitions
+- Testing a transition component is not that easy because there are a lot of timing "issues"
+- Coordination between child components has some gotchas
+- Performance escape hatch
+- Scope creep: setup
+
+### The basic _transition_ functionality is the easy part
+
+When developing this component, the basic functionality was there from day #1. Meaning that we could
+apply `enter enterFrom` then `enter enterTo` then wait and then `<empty>` no classes left.
+
+However there are some gotchas I've run into:
+
+1. For starters a `transitionend` event is not fired when there is no actual `transition` happening.
+   So I ran into an issue where everything just seems broken because we were waiting for that
+   `transitionend` event. Instead we calculate the `duration` and use a `setTimeout`.
+
+2. When you add / remove classes, you need to give the browser a bit of time to actually apply them.
+   If you `addClass(from); addClass(to); removeClass(from);` everything will happen at the same time,
+   we have to explicitly wait (using requestAnimationFrame for example).
+
+3. requestAnimationFrame has some funky issues, so I looked at other libraries and the idea for a
+   `nextFrame()` function is basically calling `requestAnimationFrame` twice:
+
+   ```js
+   function nextFrame(cb) {
+     requestAnimationFrame(() => {
+       requestAnimationFrame(cb)
+     })
+   }
+   ```
+
+   - [Vue implementation](https://github.com/vuejs/vue/blob/59d4351ad8fc042bc263a16ed45a56e9ff5b013e/src/platforms/web/runtime/transition-util.js#L67-L71) reference
+
+4. When resolving the durations from the actual DOM node, some browsers (I am looking at you Safari)
+   return a list of transition values. Thanks to the Alpine implementation I could resolve this
+   correctly.
+
+   1. I had to make some small changes though: sometimes it is returned as `.3s` sometimes as `300ms`
+   2. Once parsed, I sorted the list so that we waited for the longest duration
+
+   - [Alpine implementation](https://github.com/alpinejs/alpine/blob/05e13e42a1466d3c0c0bfa575b18dcdf58d2bf3d/src/utils.js#L466-L467) reference
+
+### `useLayoutEffect` vs `useEffect` <a name="use-layout-effect-vs-use-effect"></a>
+
+This one is a subtle one, but let's see if I can explain this one. If you look at the `useLayoutEffect` docs you will find this:
+
+> The signature is identical to useEffect, but it fires synchronously after all DOM mutations. Use
+> this to read layout from the DOM and synchronously re-render. Updates scheduled inside
+> useLayoutEffect will be flushed synchronously, before the browser has a chance to paint.
+
+-- <cite>http://reactjs.org/docs/hooks-reference.html#uselayouteffect</cite>
+
+The key part here is that `useLayoutEffect` is synchronous, this allows us to make better `enter` transitions. Let me show you:
+
+**useEffect**
+
+1. Render `<div />`
+2. (Actually touch the DOM)
+3. After render, inside the effect, add `enter enterFrom` classes (because async)
+4. Once that is applied, remove `enterFrom` add `enterTo`
+
+**useLayoutEffect**
+
+1. Render `<div />`
+2. Inside the `useLayoutEffect`, add `enter enterFrom` classes (because sync)
+3. (Actually touch the DOM)
+4. Once that is applied, remove `enterFrom` add `enterTo`
+
+The big difference now is that in the case of a `useEffect` you see `<div />` at first, when you use
+`useLayoutEffect` you see `<div class="enter enterFrom" />`.
+
+### Cancelling transitions
+
+At any stage in the process we should be able to cancel the transitions. I wrote a little
+disposables utility for this:
+[disposables.ts](https://github.com/tailwindlabs/tailwindui-react/blob/develop/src/utils/disposables.ts) the idea is
+that you do _something_ and add the "cleanup" phase as a callback to the disposables collection.
+
+I've made some useful shorthands for the `requestAnimationFrame`, `nextFrame` and `setTimeout`
+functions. Any time you schedule one of these async functions they could be cancelled by calling the
+dispose() method on the disposables collection. This is nice because we can just return the
+`dispose` function in a React useEffect hook and it will be called for us!
+
+### Testing a transition component is not that easy because there are a lot of timing "issues"
+
+You can write some very imperative code where you do an action, wait long enough, verify that something happened. While this works ([Vue transition spec](https://github.com/vuejs/vue/blob/dev/test/unit/features/transition/transition.spec.js#L17-L40)) it is a bit scary to read. So I thought of a different way to test it:
+
+What if we just start "recording" changes to a specific DOM node and its children. Every time that we see a change we will record a snapshot at that point in time. Later on we can visualise the output. Our [Transition.test.tsx](https://github.com/tailwindlabs/tailwindui-react/blob/3a2f2e17b36f31d19e023cd795df9785fb9758fe/src/components/transitions/transition.test.tsx#L422-L439) test implementation.
+
+This has its own issues again because I wanted to use the MutationObserver, but this doesn't exist in JSDom yet (which we use to test our components). So I tried a shim, but long story short... it polled every 30ms so we missed a bunch of updates.
+
+I then moved to a requestAnimationFrame loop instead to record the changes which works pretty well.
+
+### Coordination between child components has some gotchas
+
+The general idea is, when you have a root Transition element it should only unmount once all the child transitions are "done". This is not too bad, however when you have 2 Transitions with 2 different durations one will be done before the other. Initially we just marked them as hidden, but that has unwanted behaviour. Currently we will unmount the child transition once it is done.
+
+```tsx
+function Example() {
+  const [show, setShow] = React.useState(true)
+
+  return (
+    <>
+      <style>{`
+        .leave-fast { transition-duration: 75ms; }
+        .leave-slow { transition-duration: 300ms; }
+        
+        .leave-from { opacity: 100%; }
+        .leave-to { opacity: 0%; }
+      `}</style>
+
+      {/* This will unmount once all Transition.Child components are done */}
+      <Transition show={show}>
+        {/* This will unmount once the `leave-fast` transition is done */}
+        <Transition.Child leave="leave-fast" leaveFrom="leave-from" leaveTo="leave-to">
+          I am fast
+        </Transition.Child>
+
+        {/* This will unmount once the `leave-slow` transition is done */}
+        <Transition.Child leave="leave-slow" leaveFrom="leave-from" leaveTo="leave-to">
+          I am slow
+        </Transition.Child>
+      </Transition>
+
+      <button onClick={() => setShow((v) => !v)}>Toggle</button>
+    </>
+  )
+}
+```
+
+---
+
+Another fun "bug" I found was that if one of the child transitions is rendered conditionally then there was no chance to "finish" the transition. Therefore it would not tell its parent that it was "done" and the whole tree was still mounted. This results in countless of issues we've seen before where the full page is unclickable in case of the Tailwind UI sidebar layouts. (Because that fixed overlay was still present)
+
+```tsx
+function Example() {
+  const [show, setShow] = React.useState(true)
+
+  return (
+    <>
+      <style>{`
+        .leave-fast { transition-duration: 75ms; }
+        .leave-slow { transition-duration: 300ms; }
+        
+        .leave-from { opacity: 100%; }
+        .leave-to { opacity: 0%; }
+      `}</style>
+
+      <Transition show={show}>
+        <Transition.Child leave="leave-fast" leaveFrom="leave-from" leaveTo="leave-to">
+          I am fast
+        </Transition.Child>
+
+        {true && (
+          <Transition.Child leave="leave-slow" leaveFrom="leave-from" leaveTo="leave-to">
+            I am rendered conditionally
+          </Transition.Child>
+        )}
+      </Transition>
+
+      <button onClick={() => setShow((v) => !v)}>Toggle</button>
+    </>
+  )
+}
+```
+
+### Performance escape hatch
+
+To apply the correct classNames we could provide a `className` prop and update every time we change the classes during a transition. However this will result in multiple re-renders. In application code you don't always have to worry about performance, however we as the library don't know where this will be used.
+
+Therefore we apply changes to the actual DOM node directly. We do this by getting a `ref` to the actual DOM node and use the `ref.current.classList.add()` and `ref.current.classList.remove()` API's to update the classes without re-rendering the React component.
+
+### Scope creep: setup
+
+1. I've added a structure so that it is easier to create new components later on.
+2. I've setup TSDX to do the actual development (testing / linting / building / ...)
+3. I've created a playground `yarn playground` using Next.js so that you can play with the components directly in the browser.
+4. I've setup commitizen so that we can generate changelogs and follow semver based on these commit messages.
