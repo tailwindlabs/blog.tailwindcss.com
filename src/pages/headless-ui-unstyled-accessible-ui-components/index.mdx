@@ -8,7 +8,7 @@ export const meta = {
   date: '2020-10-06T18:30:00.000Z',
   authors: [adamwathan],
   image,
-  // discussion: 'https://github.com/tailwindlabs/tailwindcss/discussions/2441',
+  discussion: 'https://github.com/tailwindlabs/tailwindcss/discussions/2508',
 }
 
 One of the biggest pain points when building modern web applications is building custom components like select menus, dropdowns, toggles, modals, tabs, radio groups — components that are pretty similar from project to project, but never quite the _same_.
@@ -58,6 +58,22 @@ function MyDropdown() {
 }
 ```
 
+Here's what you're getting for free in that example, without having to write a single line of code related to it yourself:
+
+- The dropdown panel opens on click, spacebar, enter, or when using the arrow keys
+- The dropdown closes when you press escape, or click outside of it
+- You can navigate the items using the up and down arrow keys
+- You can jump the first item using the `Home` key, and the last item using the `End` key
+- Disabled items are automatically skipped when navigating with the keyboard
+- Hovering over an item with your mouse after navigating with the keyboard will switch to mouse position based focusing
+- Items are announced properly to screen readers while navigating them with the keyboard
+- The dropdown button is properly announced to screenreaders as controlling a menu
+- ...and probably tons more that I'm forgetting.
+
+All without writing the letters `aria` anywhere in your own code, and without writing a single event listener. And you still have complete control over the design!
+
+There are [over 3000 lines of tests for this component](https://github.com/tailwindlabs/headlessui/blob/c7b91dc7315b1f49c1a469f70eb1f6eba6a2e31c/packages/%40headlessui-react/src/components/menu/menu.test.tsx). Pretty nice that you didn't have to do that yourself, right?
+
 Here's a fully-styled live demo _(taken from [Tailwind UI](https://tailwindui.com))_ so you can see it in action:
 
 <iframe
@@ -69,7 +85,7 @@ Here's a fully-styled live demo _(taken from [Tailwind UI](https://tailwindui.co
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
-Make sure to try it with the keyboard or a screen reader to really appreciate what it's handling for you!
+Make sure to try it with the keyboard or a screen reader to really appreciate it!
 
 We just tagged v0.2.0, which currently includes the following components:
 
