@@ -1,22 +1,69 @@
 import fs from 'fs'
-import RSS from 'rss'
-import getAllPostPreviews from '../src/getAllPostPreviews'
+import path from 'path'
+import ReactDOMServer from 'react-dom/server'
+import { MDXProvider } from '@mdx-js/react'
+import { Feed } from 'feed'
 
-const feed = new RSS({
+import { mdxComponents } from '../src/components/Post'
+import { getAllPosts } from '../src/getAllPostPreviews'
+
+const siteUrl = 'https://blog.tailwindcss.com'
+
+const feed = new Feed({
   title: 'Blog – Tailwind CSS',
-  site_url: 'https://blog.tailwindcss.com',
-  feed_url: 'https://blog.tailwindcss.com/feed.xml',
+  description: 'All the latest Tailwind CSS news, straight from the team.',
+  id: siteUrl,
+  link: siteUrl,
+  language: 'en',
+  image: `${siteUrl}/favicon-32x32.png`,
+  favicon: `${siteUrl}/favicon.ico`,
+  copyright: 'All rights reserved 2020, Tailwind Labs',
+  feedLinks: {
+    json: `${siteUrl}/json`,
+    atom: `${siteUrl}/atom`,
+  },
+  author: {
+    name: 'Adam Wathan',
+    email: 'adam.wathan@gmail.com',
+    link: 'https://twitter.com/@adamwathan',
+  },
 })
 
-getAllPostPreviews().forEach(({ link, module: { meta } }) => {
-  feed.item({
+getAllPosts().forEach(({ link, module: { meta, default: Content } }) => {
+  const mdx = (
+    <MDXProvider components={mdxComponents}>
+      <Content />
+    </MDXProvider>
+  )
+  const html = ReactDOMServer.renderToStaticMarkup(mdx)
+  const postText = `<div style="margin-top=55px; font-style: italic;">(The post <a href="${
+    siteUrl + link
+  }">${meta.title}</a> appeared first on <a href="${siteUrl}">Tailwind CSS Blog</a>.)</div>`
+  feed.addItem({
     title: meta.title,
-    guid: link,
-    url: `https://blog.tailwindcss.com${link}`,
-    date: meta.date,
+    id: meta.title,
+    link,
+    comments: meta.discussion,
     description: meta.description,
-    custom_elements: [].concat(meta.authors.map((author) => ({ author: [{ name: author.name }] }))),
+    content: html + postText,
+    author: meta.authors.map(({ name, twitter }) => ({
+      name,
+      link: `https://twitter.com/${twitter}`,
+    })),
+    date: new Date(meta.date),
+    image: siteUrl + meta.image,
+    extensions: [
+      {
+        name: '_comments',
+        objects: {
+          about: 'link to discussions forum',
+          comments: meta.discussion,
+        },
+      },
+    ],
   })
 })
 
-fs.writeFileSync('./out/feed.xml', feed.xml({ indent: true }))
+fs.writeFileSync('./out/feed.xml', feed.rss2())
+fs.writeFileSync('./out/atom.xml', feed.atom1())
+fs.writeFileSync('./out/feed.json', feed.json1())
