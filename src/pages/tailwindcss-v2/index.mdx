@@ -47,7 +47,7 @@ Tailwind CSS v2.0 is the first major update ever, including:
 
 Even though Tailwind CSS v2.0 is a new major version, **we've worked really hard to minimize significant breaking changes**, especially ones that would force you to edit tons of your templates. We've renamed two classes, removed three that are no longer relevant in modern browsers, and replaced two with more powerful alternatives. Any other breaking changes that might impact you can be remedied with a couple small additions to your `tailwind.config.js` file. Upgrading shouldn't take more than about 30 minutes.
 
-[Check out the upgrade guide](#) for more details and step-by-step instructions on migrating your project to Tailwind CSS v2.0.
+[Check out the upgrade guide](https://tailwindcss.com/docs/upgrading-to-v2) for more details and step-by-step instructions on migrating your project to Tailwind CSS v2.0.
 
 If you'd like to start a brand new project with v2.0, [head over to our updated installation documentation](https://tailwindcss.com/docs/installation) to get started fast.
 
@@ -66,9 +66,7 @@ The new color palette includes 22 colors _(compared to 10 previously)_ with 10 s
 We've added an extra light `50` shade for every color, so they go from 50–900 now:
 
 ```html
-<div class="bg-gray-50">
-  I can't believe it's not white.
-</div>
+<div class="bg-gray-50">I can't believe it's not white.</div>
 ```
 
 The palette even includes 5 different shades of gray now, so you can choose "blue gray" if you want something really cool, or go all the way to "warm gray" for something with a lot more brown in it.
@@ -125,7 +123,9 @@ Boom — now just add `dark:` to the beginning of a class like `bg-black` and it
 Works with hover and stuff too:
 
 ```html
-<button class="bg-gray-900 hover:bg-gray-800 dark:bg-white dark:hover:bg-gray-50">
+<button
+  class="bg-gray-900 hover:bg-gray-800 dark:bg-white dark:hover:bg-gray-50"
+>
   <!-- ... -->
 </button>
 ```
@@ -157,9 +157,7 @@ I'm pretty sure they make an iPhone that is 1280px wide now, so it's time to ste
 We've added a new `2xl` breakpoint out-of-the-box that lets you target things at 1536px and above:
 
 ```html
-<h1 class="... 2xl:text-9xl">
-  Godzilla
-</h1>
+<h1 class="... 2xl:text-9xl">Godzilla</h1>
 ```
 
 Exciting I know but also let's be serious [you've been able to add this yourself](https://tailwindcss.com/docs/responsive-design#customizing-breakpoints) for like three years. Now it's blessed though, I get it.
@@ -173,7 +171,9 @@ You know how the `outline` property ignores border radius and pretty much just a
 They work a lot like the `border` utilities, except they add a solid box-shadow rather than a border so they don't impact the layout:
 
 ```html
-<button class="... focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
+<button
+  class="... focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
+>
   <!-- ... -->
 </button>
 ```
@@ -181,7 +181,9 @@ They work a lot like the `border` utilities, except they add a solid box-shadow 
 You can even offset them to create a sort of halo effect with `ring-offset-{width}` utilities:
 
 ```html
-<button class="... focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300 focus:ring-opacity-50">
+<button
+  class="... focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300 focus:ring-opacity-50"
+>
   <!-- ... -->
 </button>
 ```
@@ -208,7 +210,10 @@ Alongside Tailwind CSS v2.0, we're releasing a brand new official plugin called 
 
 ```html
 <!-- This will be a nice rounded checkbox with an indigo focus ring and an indigo checked state -->
-<input type="checkbox" class="h-4 w-4 rounded border-gray-300 focus:border-indigo-300 focus:ring-2 focus:ring-indigo-200 focus:ring-opacity-50 text-indigo-500"/>
+<input
+  type="checkbox"
+  class="h-4 w-4 rounded border-gray-300 focus:border-indigo-300 focus:ring-2 focus:ring-indigo-200 focus:ring-opacity-50 text-indigo-500"
+/>
 ```
 
 It's not included out of the box but you can add it to your `tailwind.config.js` file with a single line:
@@ -294,9 +299,7 @@ We've also extended the `inset` (that's top/right/bottom/left for you dinosaurs)
 We've extended the default typography scale with new `7xl`, `8xl`, and `9xl` values:
 
 ```html
-<h1 class="text-9xl font-bold">
-  What is this, an Apple website?
-</h1>
+<h1 class="text-9xl font-bold">What is this, an Apple website?</h1>
 ```
 
 And we've also extended the default opacity scale with steps of 10, as well as 5 and 95 values:
@@ -399,9 +402,7 @@ Check out [the default variants reference](https://tailwindcss.com/docs/configur
 Until now, any time you wanted to add a transition in Tailwind you typically needed to add three classes:
 
 ```html
-<button class="... transition duration-150 ease-in-out">
-  Count them
-</button>
+<button class="... transition duration-150 ease-in-out">Count them</button>
 ```
 
 In v2.0, we've made it possible to specify a default duration and timing function that is used automatically any time any `transitionProperty` utility is added:
@@ -427,17 +428,13 @@ module.exports = {
 So now you only need to write a single class if you have a common duration and timing function that you use really frequently:
 
 ```html
-<button class="... transition">
-  Count them again
-</button>
+<button class="... transition">Count them again</button>
 ```
 
 Of course you can override this by layering on separate duration or timing function utilities:
 
 ```html
-<button class="... transition duration-300 ease-out">
-  We're back baby
-</button>
+<button class="... transition duration-300 ease-out">We're back baby</button>
 ```
 
 Learn more about transitions in the [transition property documentation](https://tailwindcss.com/docs/transition-property).
