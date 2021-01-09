@@ -80,12 +80,7 @@ module.exports = withBundleAnalyzer({
         },
         {
           resourceQuery: /rss/,
-          use: [
-            ...mdx,
-            createLoader(function (src) {
-              return this.callback(null, src)
-            }),
-          ],
+          use: mdx,
         },
         {
           use: [
