@@ -19,8 +19,9 @@ const feed = new Feed({
   favicon: `${siteUrl}/favicon.ico`,
   copyright: 'All rights reserved 2020, Tailwind Labs',
   feedLinks: {
-    json: `${siteUrl}/json`,
-    atom: `${siteUrl}/atom`,
+    rss: `${siteUrl}/feed.xml`,
+    json: `${siteUrl}/feed.json`,
+    atom: `${siteUrl}/atom.xml`,
   },
   author: {
     name: 'Adam Wathan',
