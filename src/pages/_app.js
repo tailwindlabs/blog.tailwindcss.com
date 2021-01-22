@@ -14,7 +14,9 @@ export default function App({ Component, pageProps }) {
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#00aba9" />
         <meta name="theme-color" content="#ffffff" />
-        <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
+        <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/feed.xml" />
+        <link rel="alternate" type="application/atom+xml" title="Atom 1.0" href="/atom.xml" />
+        <link rel="alternate" type="application/json" title="JSON Feed" href="/feed.json" />
       </Head>
       <SectionContainer>
         <Header />

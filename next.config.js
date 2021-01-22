@@ -79,6 +79,10 @@ module.exports = withBundleAnalyzer({
           ],
         },
         {
+          resourceQuery: /rss/,
+          use: mdx,
+        },
+        {
           use: [
             ...mdx,
             createLoader(function (src) {

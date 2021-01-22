@@ -18,3 +18,9 @@ export default function getAllPostPreviews() {
     dateSortDesc(a.module.meta.date, b.module.meta.date)
   )
 }
+
+export function getAllPosts() {
+  return importAll(require.context('./pages/?rss', true, /\.mdx$/)).sort((a, b) =>
+    dateSortDesc(a.module.meta.date, b.module.meta.date)
+  )
+}
