@@ -87,7 +87,10 @@ export default function Post({ meta, children, posts }) {
           <div className="prose max-w-none pt-10 pb-8">
             <MDXProvider components={mdxComponents}>{children}</MDXProvider>
           </div>
-          {meta.discussion && (
+          {meta.footer && (
+            <div className="pt-6 pb-16" dangerouslySetInnerHTML={{ __html: meta.footer }} />
+          )}
+          {!meta.footer && meta.discussion && (
             <div className="pt-6 pb-16">
               <p>
                 Want to talk about this post?{' '}
