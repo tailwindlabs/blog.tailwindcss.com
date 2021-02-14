@@ -73,7 +73,7 @@ export default function Post({ meta, children, posts }) {
                         href={`https://twitter.com/${author.twitter}`}
                         className="text-teal-500 hover:text-teal-600"
                       >
-                        {author.twitter}
+                        @{author.twitter}
                       </a>
                     </dd>
                   </dl>
