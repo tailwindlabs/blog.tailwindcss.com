@@ -6,19 +6,19 @@ import simonswissAvatar from './img/simonswiss.jpg'
 
 export const adamwathan = {
   name: 'Adam Wathan',
-  twitter: '@adamwathan',
+  twitter: 'adamwathan',
   avatar: adamwathanAvatar,
 }
 
 export const bradlc = {
   name: 'Brad Cornes',
-  twitter: '@bradlc',
+  twitter: 'bradlc',
   avatar: bradlcAvatar,
 }
 
 export const steveschoger = {
   name: 'Steve Schoger',
-  twitter: '@steveschoger',
+  twitter: 'steveschoger',
   avatar: steveschogerAvatar,
 }
 
