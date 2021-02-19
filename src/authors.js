@@ -24,12 +24,12 @@ export const steveschoger = {
 
 export const robinmalfait = {
   name: 'Robin Malfait',
-  twitter: '@malfaitrobin',
+  twitter: 'malfaitrobin',
   avatar: robinmalfaitAvatar,
 }
 
 export const simonswiss = {
   name: 'Simon Vrachliotis',
-  twitter: '@simonswiss',
+  twitter: 'simonswiss',
   avatar: simonswissAvatar,
 }
