@@ -44,7 +44,7 @@ export default function Post({ meta, children, posts }) {
           <dl className="space-y-10">
             <div>
               <dt className="sr-only">Published on</dt>
-              <dd className="text-base leading-6 font-medium text-gray-500">
+              <dd className="text-base font-medium text-gray-500">
                 <time dateTime={meta.date}>{postDateTemplate.render(new Date(meta.date))}</time>
               </dd>
             </div>
@@ -55,7 +55,7 @@ export default function Post({ meta, children, posts }) {
         </div>
       </header>
       <div
-        className="divide-y xl:divide-y-0 divide-gray-200 xl:grid xl:grid-cols-4 xl:col-gap-6 pb-16 xl:pb-20"
+        className="divide-y xl:divide-y-0 divide-gray-200 xl:grid xl:grid-cols-4 xl:gap-x-6 pb-16 xl:pb-20"
         style={{ gridTemplateRows: 'auto 1fr' }}
       >
         <dl className="pt-6 pb-10 xl:pt-11 xl:border-b xl:border-gray-200">
@@ -65,7 +65,7 @@ export default function Post({ meta, children, posts }) {
               {meta.authors.map((author) => (
                 <li key={author.twitter} className="flex items-center space-x-2">
                   <img src={author.avatar} alt="" className="w-10 h-10 rounded-full" />
-                  <dl className="text-sm font-medium leading-5 whitespace-no-wrap">
+                  <dl className="text-sm font-medium whitespace-no-wrap">
                     <dt className="sr-only">Name</dt>
                     <dd className="text-gray-900">{author.name}</dd>
                     <dt className="sr-only">Twitter</dt>
@@ -101,12 +101,14 @@ export default function Post({ meta, children, posts }) {
             </div>
           )}
         </div>
-        <footer className="text-sm font-medium leading-5 divide-y divide-gray-200 xl:col-start-1 xl:row-start-2">
+        <footer className="text-sm font-medium divide-y divide-gray-200 xl:col-start-1 xl:row-start-2">
           {(next || previous) && (
             <div className="space-y-8 py-8">
               {next && (
                 <div>
-                  <h2 className="text-xs tracking-wide uppercase text-gray-500">Next Article</h2>
+                  <h2 className="text-xs leading-5 tracking-wide uppercase text-gray-500">
+                    Next Article
+                  </h2>
                   <div className="text-teal-500 hover:text-teal-600">
                     <Link href={next.link}>
                       <a>{next.title}</a>
@@ -116,7 +118,7 @@ export default function Post({ meta, children, posts }) {
               )}
               {previous && (
                 <div>
-                  <h2 className="text-xs tracking-wide uppercase text-gray-500">
+                  <h2 className="text-xs leading-5 tracking-wide uppercase text-gray-500">
                     Previous Article
                   </h2>
                   <div className="text-teal-500 hover:text-teal-600">
