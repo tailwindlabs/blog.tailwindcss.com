@@ -228,7 +228,7 @@ So this is what's different when you look at a React or Vue example compared to 
 2. **Transitions are real now** — instead of comments telling you what classes to add at each phase of a transition, the transition is just there, using either a Headless UI transition component or Vue's native transition component.
 3. **Interactive elements are handled by Headless UI** — you'll see a few imports in any example that requires JS where we pull in the required Headless UI components and then those are used directly in the markup.
 4. **Any repeated chunks of markup have been converted into basic loops** — any data-driven loop stuff (like lists of people, or navigation items) are extracted into simple variables right there in the example to reduce duplication but still keep everything together in one place. In your own projects, you'd swap this out with data from an API or database or whatever, but we keep the examples simple and don't make any assumptions for you.
-5. **Icons are pulled in from the Heroicons library**. Instead of inlining the SVG directly whenever an icon is used, we pull them in from our React/Vue icon libraries instead of keep the markup simpler.
+5. **Icons are pulled in from the Heroicons library**. Instead of inlining the SVG directly whenever an icon is used, we pull them in from our React/Vue icon libraries instead to keep the markup simpler.
 
 Here's an example of what it actually looks like:
 
