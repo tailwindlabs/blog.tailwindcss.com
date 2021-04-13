@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-function TailwindMark({ className }) {
+export function TailwindMark({ className }) {
   return (
     <svg className={className} fill="none" viewBox="0 0 55 33">
       <path fill="#fff" d="M0 0h55v33H0z" />
@@ -14,7 +14,7 @@ function TailwindMark({ className }) {
   )
 }
 
-function TailwindLogo({ className }) {
+export function TailwindLogo({ className }) {
   return (
     <svg className={className} fill="none" viewBox="0 0 285 33">
       <path
@@ -47,7 +47,10 @@ export default function Header() {
         </Link>
       </div>
       <div className="text-base leading-5">
-        <a href="https://tailwindcss.com/docs" className="font-medium text-gray-500 hover:text-gray-700">
+        <a
+          href="https://tailwindcss.com/docs"
+          className="font-medium text-gray-500 hover:text-gray-700"
+        >
           Documentation &rarr;
         </a>
       </div>

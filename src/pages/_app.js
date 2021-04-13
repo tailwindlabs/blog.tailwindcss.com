@@ -1,7 +1,5 @@
 import '@/css/tailwind.css'
 import Head from 'next/head'
-import Header from '@/components/Header'
-import SectionContainer from '@/components/SectionContainer'
 
 export default function App({ Component, pageProps }) {
   return (
@@ -18,14 +16,7 @@ export default function App({ Component, pageProps }) {
         <link rel="alternate" type="application/atom+xml" title="Atom 1.0" href="/atom.xml" />
         <link rel="alternate" type="application/json" title="JSON Feed" href="/feed.json" />
       </Head>
-      <SectionContainer>
-        <Header />
-      </SectionContainer>
-      <SectionContainer>
-        <main>
-          <Component {...pageProps} />
-        </main>
-      </SectionContainer>
+      <Component {...pageProps} />
     </div>
   )
 }
