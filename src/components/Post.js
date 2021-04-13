@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import { MDXProvider } from '@mdx-js/react'
 import Header, { TailwindMark } from '@/components/Header'
 import SectionContainer from '@/components/SectionContainer'
+import smallCard from '@/img/twitter-card-small.jpg'
 
 export const mdxComponents = {
   pre: ({ className, ...props }) => (
@@ -29,12 +30,27 @@ export default function Post({ meta, children, posts }) {
             <article className="py-16">
               <Head>
                 <title>{meta.title} – Tailwind CSS</title>
-                <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:site" content="@tailwindcss" />
                 <meta name="twitter:creator" content="@tailwindcss" />
                 <meta name="twitter:title" content={`${meta.title} – Tailwind CSS`} />
                 <meta name="twitter:description" content={meta.description} />
-                <meta name="twitter:image" content={`https://blog.tailwindcss.com${meta.image}`} />
+                {meta.image ? (
+                  <>
+                    <meta name="twitter:card" content="summary_large_image" />
+                    <meta
+                      name="twitter:image"
+                      content={`https://blog.tailwindcss.com${meta.image}`}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <meta name="twitter:card" content="summary" />
+                    <meta
+                      name="twitter:image"
+                      content={`https://blog.tailwindcss.com${smallCard}`}
+                    />
+                  </>
+                )}
                 <meta
                   property="og:url"
                   content={`https://blog.tailwindcss.com${router.pathname}`}
@@ -50,6 +66,7 @@ export default function Post({ meta, children, posts }) {
                   <div className="flex justify-center">
                     <Link href="/">
                       <a className="inline-flex">
+                        <span className="sr-only">All posts</span>
                         <TailwindMark className="h-12 w-12" />
                       </a>
                     </Link>
