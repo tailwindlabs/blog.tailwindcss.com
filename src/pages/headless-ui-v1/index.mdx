@@ -24,7 +24,7 @@ Today we’re super excited to release [Headless UI v1.0](https://headlessui.dev
 <!--more-->
 
 <a href="https://headlessui.dev">
-  <img src={card} alt="" />
+  <img src={card} alt="Headless UI" />
 </a>
 
 ## What’s new
@@ -36,11 +36,11 @@ We’ve added four new components to the React library, and five new components 
 Headless UI now includes a robust dialog implementation you can use to build traditional modal dialogs, mobile slide-out menus, or any other take-over-style UI that needs to capture the focus of the entire page.
 
 ```jsx
-import { useState } from “react”;
-import { Dialog } from “@headlessui/react”;
+import { useState } from 'react'
+import { Dialog } from '@headlessui/react'
 
 function MyDialog() {
-  let [isOpen, setIsOpen] = useState(true);
+  let [isOpen, setIsOpen] = useState(true)
 
   return (
     <Dialog open={isOpen} onClose={setIsOpen}>
@@ -59,13 +59,13 @@ function MyDialog() {
       <button onClick={() => setIsOpen(false)}>Deactivate</button>
       <button onClick={() => setIsOpen(false)}>Cancel</button>
     </Dialog>
-  );
+  )
 }
 ```
 
 ### Disclosure
 
-We’ve added a new `Disclosure` component that makes it easy to show/hide inline content accessibly. This is useful for things like collapsible FAQ questions, “show more” interfaces, or even hamburger menus that open up and push the rest of the page content away.
+We’ve added a new `Disclosure` component that makes it easy to show/hide inline content accessibly. This is useful for things like collapsible FAQ questions, "show more" interfaces, or even hamburger menus that open up and push the rest of the page content away.
 
 ```html
 <template>
@@ -82,11 +82,11 @@ We’ve added a new `Disclosure` component that makes it easy to show/hide inlin
     Disclosure,
     DisclosureButton,
     DisclosurePanel,
-  } from “@headlessui/vue”;
+  } from '@headlessui/vue'
 
   export default {
     components: { Disclosure, DisclosureButton, DisclosurePanel },
-  };
+  }
 </script>
 ```
 
@@ -95,32 +95,32 @@ We’ve added a new `Disclosure` component that makes it easy to show/hide inlin
 There’s now a `RadioGroup` component that you can use to build totally custom radio button UIs, like when you want to use fancy cards or something instead of a simple little radio circle.
 
 ```jsx
-import { useState } from “react”;
-import { RadioGroup } from “@headlessui/react”;
+import { useState } from 'react'
+import { RadioGroup } from '@headlessui/react'
 
 function MyRadioGroup() {
-  let [plan, setPlan] = useState(“startup”);
+  let [plan, setPlan] = useState('startup')
 
   return (
     <RadioGroup value={plan} onChange={setPlan}>
       <RadioGroup.Label>Plan</RadioGroup.Label>
-      <RadioGroup.Option value=“startup”>
+      <RadioGroup.Option value="startup">
         {({ checked }) => (
           <span className={`${checked} ? 'bg-blue-200' : ''`}>Startup</span>
         )}
       </RadioGroup.Option>
-      <RadioGroup.Option value=“business”>
+      <RadioGroup.Option value="business">
         {({ checked }) => (
           <span className={`${checked} ? 'bg-blue-200' : ''`}>Business</span>
         )}
       </RadioGroup.Option>
-      <RadioGroup.Option value=“enterprise”>
+      <RadioGroup.Option value="enterprise">
         {({ checked }) => (
           <span className={`${checked} ? 'bg-blue-200' : ''`}>Enterprise</span>
         )}
       </RadioGroup.Option>
     </RadioGroup>
-  );
+  )
 }
 ```
 
@@ -130,28 +130,28 @@ The new `Popover` component lets you build custom dropdown UIs that don’t have
 
 ```html
 <template>
-  <Popover class=“relative”>
+  <Popover class="relative">
     <PopoverButton>Solutions</PopoverButton>
 
-    <PopoverPanel class=“absolute z-10”>
-      <div >
-        <a href=“/analytics”>Analytics</a>
-        <a href=“/engagement”>Engagement</a>
-        <a href=“/security”>Security</a>
-        <a href=“/integrations”>Integrations</a>
+    <PopoverPanel class="absolute z-10">
+      <div>
+        <a href="/analytics">Analytics</a>
+        <a href="/engagement">Engagement</a>
+        <a href="/security">Security</a>
+        <a href="/integrations">Integrations</a>
       </div>
 
-      <img src=“/solutions.jpg” alt=“” />
+      <img src="/solutions.jpg" alt="" />
     </PopoverPanel>
   </Popover>
 </template>
 
 <script>
-  import { Popover, PopoverButton, PopoverPanel } from “@headlessui/vue”;
+  import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
 
   export default {
     components: { Popover, PopoverButton, PopoverPanel },
-  };
+  }
 </script>
 ```
 
@@ -164,37 +164,37 @@ Headless UI v1.0 brings our React `Transition` component to Vue as well, which m
 ```html
 <template>
   <!— This `show` prop controls all nested `Transition.Child` components. —>
-  <TransitionRoot :show="“isOpen”">
+  <TransitionRoot :show="isOpen">
     <!— Background overlay —>
     <TransitionChild
-      enter="“transition-opacity"
+      enter="transition-opacity"
       ease-linear
-      duration-300”
-      enter-from="“opacity-0”"
-      enter-to="“opacity-100”"
-      leave="“transition-opacity"
+      duration-300"
+      enter-from="opacity-0"
+      enter-to="opacity-100"
+      leave="transition-opacity"
       ease-linear
-      duration-300”
-      leave-from="“opacity-100”"
-      leave-to="“opacity-0”"
+      duration-300"
+      leave-from="opacity-100"
+      leave-to="opacity-0"
     >
       <!— … —>
     </TransitionChild>
 
     <!— Sliding sidebar —>
     <TransitionChild
-      enter="“transition"
+      enter="transition"
       ease-in-out
       duration-300
-      transform”
-      enter-from="“-translate-x-full”"
-      enter-to="“translate-x-0”"
-      leave="“transition"
+      transform"
+      enter-from="-translate-x-full"
+      enter-to="translate-x-0"
+      leave="transition"
       ease-in-out
       duration-300
-      transform”
-      leave-from="“translate-x-0”"
-      leave-to="“-translate-x-full”"
+      transform"
+      leave-from="translate-x-0"
+      leave-to="-translate-x-full"
     >
       <!— … —>
     </TransitionChild>
@@ -202,8 +202,8 @@ Headless UI v1.0 brings our React `Transition` component to Vue as well, which m
 </template>
 
 <script>
-  import { ref } from “vue”;
-  import { Transition, TransitionChild } from “@headlessui/vue”;
+  import { ref } from "vue";
+  import { Transition, TransitionChild } from "@headlessui/vue";
 
   export default {
     components: { TransitionRoot: Transition, TransitionChild },
