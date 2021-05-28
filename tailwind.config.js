@@ -11,12 +11,6 @@ module.exports = {
   },
   theme: {
     extend: {
-      spacing: {
-        '9/16': '56.25%',
-      },
-      lineHeight: {
-        14: '3.5rem',
-      },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
@@ -82,8 +76,8 @@ module.exports = {
       }),
     },
   },
-  variants: {},
   plugins: [
+    require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),
     function ({ addBase }) {
       addBase([

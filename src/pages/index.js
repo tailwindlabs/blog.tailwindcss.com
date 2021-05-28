@@ -35,7 +35,7 @@ export default function Home() {
               <meta name="description" content="News content from the Tailwind CSS team." />
             </Head>
             <div className="pt-6 pb-8 space-y-2 md:space-y-5">
-              <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl md:text-6xl md:leading-14">
+              <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl md:text-[4rem] md:leading-[3.5rem]">
                 Latest
               </h1>
               <p className="text-lg text-gray-500">
