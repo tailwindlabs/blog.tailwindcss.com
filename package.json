@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build && next export && npm run build:rss",
+    "dev": "TAILWIND_DISABLE_TOUCH=true next dev",
+    "build": "TAILWIND_DISABLE_TOUCH=true next build && next export && npm run build:rss",
     "start": "next start",
     "build:rss": "node ./.next/server/scripts/build-rss.js"
   },
@@ -13,11 +13,11 @@
     "@mdx-js/loader": "^1.6.22",
     "@tailwindcss/typography": "^0.4.0",
     "autoprefixer": "^10.2.5",
-    "next": "^10.0.8",
+    "next": "^10.2.3",
     "postcss": "^8.2.8",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "tailwindcss": "^2.0.4",
+    "tailwindcss": "^2.2.0-canary.9",
     "tinytime": "^0.2.6"
   },
   "devDependencies": {
