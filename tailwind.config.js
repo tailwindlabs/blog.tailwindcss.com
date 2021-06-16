@@ -2,44 +2,31 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 const mdx = require('@mdx-js/mdx')
 
 module.exports = {
+  mode: 'jit',
   purge: {
-    mode: 'all',
     content: ['./src/**/*.{js,mdx}', './next.config.js'],
-    options: {
-      extractors: [
-        {
-          extensions: ['mdx'],
-          extractor: (content) => {
-            content = mdx.sync(content)
-
-            // Capture as liberally as possible, including things like `h-(screen-1.5)`
-            const broadMatches = content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || []
-
-            // Capture classes within other delimiters like .block(class="w-1/2") in Pug
-            const innerMatches =
-              content.match(/[^<>"'`\s.(){}[\]#=%]*[^<>"'`\s.(){}[\]#=%:]/g) || []
-
-            return broadMatches.concat(innerMatches)
-          },
-        },
-      ],
+    transform: {
+      mdx: mdx.sync,
     },
   },
   theme: {
     extend: {
-      spacing: {
-        '9/16': '56.25%',
-      },
-      lineHeight: {
-        '11': '2.75rem',
-        '12': '3rem',
-        '13': '3.25rem',
-        '14': '3.5rem',
-      },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
       colors: {
+        teal: {
+          50: '#edfafa',
+          100: '#d5f5f6',
+          200: '#afecef',
+          300: '#7edce2',
+          400: '#16bdca',
+          500: '#0694a2',
+          600: '#047481',
+          700: '#036672',
+          800: '#05505c',
+          900: '#014451',
+        },
         code: {
           green: '#b5f4a5',
           yellow: '#ffe484',
@@ -50,7 +37,7 @@ module.exports = {
         },
       },
       typography: (theme) => ({
-        default: {
+        DEFAULT: {
           css: {
             color: theme('colors.gray.700'),
             h2: {
@@ -74,6 +61,7 @@ module.exports = {
             },
             a: {
               color: theme('colors.gray.900'),
+              fontWeight: 400,
             },
             pre: {
               color: theme('colors.gray.200'),
@@ -88,11 +76,10 @@ module.exports = {
       }),
     },
   },
-  variants: {},
   plugins: [
-    require('@tailwindcss/ui'),
+    require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),
-    function ({ addBase, addComponents, theme }) {
+    function ({ addBase }) {
       addBase([
         {
           '@font-face': {

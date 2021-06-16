@@ -35,10 +35,10 @@ export default function Home() {
               <meta name="description" content="News content from the Tailwind CSS team." />
             </Head>
             <div className="pt-6 pb-8 space-y-2 md:space-y-5">
-              <h1 className="text-3xl leading-9 font-extrabold text-gray-900 tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+              <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl md:text-[4rem] md:leading-[3.5rem]">
                 Latest
               </h1>
-              <p className="text-lg leading-7 text-gray-500">
+              <p className="text-lg text-gray-500">
                 All the latest Tailwind CSS news, straight from the team.
               </p>
             </div>
@@ -49,7 +49,7 @@ export default function Home() {
                     <article className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline">
                       <dl>
                         <dt className="sr-only">Published on</dt>
-                        <dd className="text-base leading-6 font-medium text-gray-500">
+                        <dd className="text-base font-medium text-gray-500">
                           <time dateTime={meta.date}>
                             {postDateTemplate.render(new Date(meta.date))}
                           </time>
@@ -57,7 +57,7 @@ export default function Home() {
                       </dl>
                       <div className="space-y-5 xl:col-span-3">
                         <div className="space-y-6">
-                          <h2 className="text-2xl leading-8 font-bold tracking-tight">
+                          <h2 className="text-2xl font-bold tracking-tight">
                             <Link href={link}>
                               <a className="text-gray-900">{meta.title}</a>
                             </Link>
@@ -66,7 +66,7 @@ export default function Home() {
                             <Component />
                           </div>
                         </div>
-                        <div className="text-base leading-6 font-medium">
+                        <div className="text-base font-medium">
                           <Link href={link}>
                             <a
                               className="text-teal-500 hover:text-teal-600"

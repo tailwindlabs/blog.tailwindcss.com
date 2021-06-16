@@ -3,23 +3,20 @@ import * as fs from 'fs'
 import * as path from 'path'
 
 class InlineStylesHead extends Head {
-  getCssLinks() {
-    return this.__getInlineStyles()
-  }
-
-  __getInlineStyles() {
-    const { assetPrefix, files } = this.context._documentProps
-    if (!files || files.length === 0) return null
-
-    return files
+  getCssLinks(files) {
+    return files.sharedFiles
       .filter((file) => /\.css$/.test(file))
+      .filter((file) => fs.existsSync(path.join(process.cwd(), '.next', file)))
       .map((file) => (
         <style
           key={file}
           nonce={this.props.nonce}
-          data-href={`${assetPrefix}/_next/${file}`}
+          data-href={`${this.context.assetPrefix}/_next/${file}`}
           dangerouslySetInnerHTML={{
-            __html: fs.readFileSync(path.join(process.cwd(), '.next', file), 'utf-8'),
+            __html: fs.readFileSync(
+              path.join(process.cwd(), '.next', file),
+              'utf-8'
+            ),
           }}
         />
       ))
