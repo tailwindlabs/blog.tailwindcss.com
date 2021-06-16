@@ -178,7 +178,7 @@ export default function Post({ meta, children, posts }) {
                           <dd>
                             <a
                               href={`https://twitter.com/${author.twitter}`}
-                              className="text-teal-500 hover:text-teal-600"
+                              className="text-teal-600 hover:text-teal-700"
                             >
                               @{author.twitter}
                             </a>
@@ -202,7 +202,7 @@ export default function Post({ meta, children, posts }) {
                       Want to talk about this post?{' '}
                       <a
                         href={meta.discussion}
-                        className="font-medium text-teal-500 hover:text-teal-600"
+                        className="font-medium text-teal-600 hover:text-teal-700"
                       >
                         Discuss this on GitHub &rarr;
                       </a>
@@ -218,7 +218,7 @@ export default function Post({ meta, children, posts }) {
                         <h2 className="text-xs leading-5 tracking-wide uppercase text-gray-500">
                           Next Article
                         </h2>
-                        <div className="text-teal-500 hover:text-teal-600">
+                        <div className="text-teal-600 hover:text-teal-700">
                           <Link href={next.link}>
                             <a>{next.title}</a>
                           </Link>
@@ -230,7 +230,7 @@ export default function Post({ meta, children, posts }) {
                         <h2 className="text-xs leading-5 tracking-wide uppercase text-gray-500">
                           Previous Article
                         </h2>
-                        <div className="text-teal-500 hover:text-teal-600">
+                        <div className="text-teal-600 hover:text-teal-700">
                           <Link href={previous.link}>
                             <a>{previous.title}</a>
                           </Link>
@@ -241,7 +241,7 @@ export default function Post({ meta, children, posts }) {
                 )}
                 <div className="pt-8">
                   <Link href="/">
-                    <a className="text-teal-500 hover:text-teal-600">&larr; Back to the blog</a>
+                    <a className="text-teal-600 hover:text-teal-700">&larr; Back to the blog</a>
                   </Link>
                 </div>
               </footer>
