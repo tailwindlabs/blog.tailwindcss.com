@@ -53,7 +53,7 @@ module.exports = {
               fontWeight: 400,
             },
             pre: {
-              color: theme('colors.gray.200'),
+              color: theme('colors.white'),
               backgroundColor: theme('colors.gray.800'),
             },
             blockquote: {
