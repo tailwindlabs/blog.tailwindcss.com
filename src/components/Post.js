@@ -8,15 +8,6 @@ import Header, { TailwindMark } from '@/components/Header'
 import SectionContainer from '@/components/SectionContainer'
 import smallCard from '@/img/twitter-card-small.jpg'
 
-export const mdxComponents = {
-  pre: ({ className, ...props }) => (
-    <pre className={`${className} rounded-md bg-gray-800 py-3 px-4 overflow-x-auto`} {...props} />
-  ),
-  'pre.code': ({ className, ...props }) => (
-    <code className={`${className} text-gray-200`} {...props} />
-  ),
-}
-
 const postDateTemplate = tinytime('{dddd}, {MMMM} {DD}, {YYYY}')
 
 export default function Post({ meta, children, posts }) {
@@ -106,7 +97,7 @@ export default function Post({ meta, children, posts }) {
               </header>
               <div className="mt-12">
                 <div className="prose mx-auto">
-                  <MDXProvider components={mdxComponents}>{children}</MDXProvider>
+                  <MDXProvider>{children}</MDXProvider>
                 </div>
               </div>
             </article>
@@ -191,7 +182,7 @@ export default function Post({ meta, children, posts }) {
               </dl>
               <div className="divide-y divide-gray-200 xl:pb-0 xl:col-span-3 xl:row-span-2">
                 <div className="prose max-w-none pt-10 pb-8">
-                  <MDXProvider components={mdxComponents}>{children}</MDXProvider>
+                  <MDXProvider>{children}</MDXProvider>
                 </div>
                 {meta.footer && (
                   <div className="pt-6 pb-16" dangerouslySetInnerHTML={{ __html: meta.footer }} />

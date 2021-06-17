@@ -3,7 +3,6 @@ import ReactDOMServer from 'react-dom/server'
 import { MDXProvider } from '@mdx-js/react'
 import { Feed } from 'feed'
 
-import { mdxComponents } from '../src/components/Post'
 import { getAllPosts } from '../src/getAllPostPreviews'
 
 const siteUrl = 'https://blog.tailwindcss.com'
@@ -30,7 +29,7 @@ const feed = new Feed({
 
 getAllPosts().forEach(({ link, module: { meta, default: Content } }) => {
   const mdx = (
-    <MDXProvider components={mdxComponents}>
+    <MDXProvider>
       <Content />
     </MDXProvider>
   )

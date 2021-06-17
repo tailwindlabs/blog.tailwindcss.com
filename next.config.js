@@ -1,23 +1,8 @@
 const { createLoader } = require('simple-functional-loader')
-const rehypePrism = require('@mapbox/rehype-prism')
-const visit = require('unist-util-visit')
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
-
-const tokenClassNames = {
-  tag: 'text-code-red',
-  'attr-name': 'text-code-yellow',
-  'attr-value': 'text-code-green',
-  deleted: 'text-code-red',
-  inserted: 'text-code-green',
-  punctuation: 'text-code-white',
-  keyword: 'text-code-purple',
-  string: 'text-code-green',
-  function: 'text-code-blue',
-  boolean: 'text-code-red',
-  comment: 'text-gray-400 italic',
-}
+const withSyntaxHighlighting = require('./remark/withSyntaxHighlighting')
 
 module.exports = withBundleAnalyzer({
   pageExtensions: ['js', 'jsx', 'mdx'],
@@ -43,19 +28,7 @@ module.exports = withBundleAnalyzer({
       {
         loader: '@mdx-js/loader',
         options: {
-          rehypePlugins: [
-            rehypePrism,
-            () => {
-              return (tree) => {
-                visit(tree, 'element', (node, index, parent) => {
-                  let [token, type] = node.properties.className || []
-                  if (token === 'token') {
-                    node.properties.className = [tokenClassNames[type]]
-                  }
-                })
-              }
-            },
-          ],
+          remarkPlugins: [withSyntaxHighlighting],
         },
       },
     ]
