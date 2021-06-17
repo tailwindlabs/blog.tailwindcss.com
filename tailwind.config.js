@@ -17,14 +17,13 @@ module.exports = {
       },
       colors: {
         teal: colors.cyan,
-        code: {
-          green: '#b5f4a5',
-          yellow: '#ffe484',
-          purple: '#d9a9ff',
-          red: '#ff8383',
-          blue: '#93ddfd',
-          white: '#fff',
-        },
+
+        // for syntax highlighting
+        fuchsia: colors.fuchsia,
+        lime: colors.lime,
+        sky: colors.sky,
+        rose: colors.rose,
+        emerald: colors.emerald,
       },
       typography: (theme) => ({
         DEFAULT: {
