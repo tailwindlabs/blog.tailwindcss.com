@@ -305,13 +305,13 @@ In addition to making arbitrary value support more comprehensive, we've also add
 
 ```html
 <!-- Is this a font size utility, or a text color utility? -->
-<div class="text-[var(--mystery-var)"></div>
+<div class="text-[var(--mystery-var)]"></div>
 ```
 
 Now you can provide a hint to the engine by prefixing the arbitrary value with the type name:
 
 ```html
-<div class="text-[color:var(--mystery-var)"></div>
+<div class="text-[color:var(--mystery-var)]"></div>
 ```
 
 Currently, the supported types are:
