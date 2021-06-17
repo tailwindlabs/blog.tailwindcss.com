@@ -17,9 +17,15 @@ export const meta = {
   `,
 }
 
+<!--excerpt-->
+
 Well I can't say we were really planning on it but over the last few weeks we've been having a ton of fun dumping new and exciting features into Tailwind and now feels like the right time to cut a release, so here it is — Tailwind CSS v2.2!
 
-<!--more-->
+We've built-in a new high-performance CLI tool, added `::before` and `::after` support, introduced new `peer-*` variants for sibling styling, added variants for styling highlighted text, and tons more.
+
+<!--/excerpt-->
+
+Well I can't say we were really planning on it but over the last few weeks we've been having a ton of fun dumping new and exciting features into Tailwind and now feels like the right time to cut a release, so here it is — Tailwind CSS v2.2!
 
 <div className="aspect-w-16 aspect-h-9 my-12">
   <iframe
@@ -53,6 +59,12 @@ Here are the highlights:
 For the full details, [check out the release notes](https://github.com/tailwindlabs/tailwindcss/releases/tag/v2.2.0) on GitHub.
 
 It's important to note that although this is a minor release and there are no breaking changes in the classic engine, **Just-in-Time mode is still in preview and v2.2 introduces a few very small changes that might impact you**, so make sure you read through the [changes and deprecations](https://github.com/tailwindlabs/tailwindcss/releases/tag/v2.2.0#changes-and-deprecations) in the release notes when upgrading.
+
+When you're ready to upgrade, just install the latest version from npm and you're off to the races:
+
+```shell
+npm install -D tailwindcss@latest
+```
 
 ---
 
@@ -254,7 +266,7 @@ _This feature is only available in [Just-in-Time mode](https://tailwindcss.com/d
 
 Instead of using utilities like `bg-opacity-50`, `text-opacity-25`, or `placeholder-opacity-40`, Tailwind CSS v2.2 gives you a new color opacity shorthand you can use to tweak the alpha channel of a color directly in the color utility itself:
 
-```diff
+```diff-html
 - <div class="bg-red-500 bg-opacity-25">
 + <div class="bg-red-500/25">
 ```
@@ -363,7 +375,7 @@ Under the hood, this uses a new `screen()` function we've introduced that you ca
 
 You probably won't need to use this yourself but it could be helpful if you're ever integrating Tailwind with another tool that understands `@media` but doesn't handle `@screen` properly.
 
-```diff
+```diff-css
 - @screen sm { /* ... */ }
 + @media screen(sm) { /* ... */ }
 ```
@@ -421,7 +433,7 @@ _This feature is only available in [Just-in-Time mode](https://tailwindcss.com/d
 
 The `transform`, `filter`, and `backdrop-filter` classes are no longer necessary to "enable" their respective set of composable utilities.
 
-```diff
+```diff-html
 - <div class="transform scale-50 filter grayscale backdrop-filter backdrop-blur-sm">
 + <div class="scale-50 grayscale backdrop-blur-sm">
 ```
@@ -430,7 +442,7 @@ Now those features are automatically enabled any time you use any of the relevan
 
 It's important to understand though that because these utilities aren't needed anymore, you can no longer expect transforms and filters to be "dormant" by default. If you were relying on conditionally "activating" transforms or filters by toggling these classes, you will want to make sure you are toggling the sub-utilities themselves instead:
 
-```diff
+```diff-html
 - <div class="scale-105 -translate-y-1 hover:transform">
 + <div class="hover:scale-105 hover:-translate-y-1">
 ```
