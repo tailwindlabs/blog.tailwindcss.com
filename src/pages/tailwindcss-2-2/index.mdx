@@ -3,7 +3,7 @@ import image from './card.jpg'
 
 export const meta = {
   title: 'Tailwind CSS v2.2',
-  description: `An all-new CLI tool, before and after support, sibling selectors, selected text variants, and tons more.`,
+  description: `An all-new high-performance CLI tool, ::before and ::after support, sibling selectors, selected text variants, and tons more.`,
   date: '2021-06-17T14:00:00.000Z',
   authors: [adamwathan],
   image,
@@ -23,7 +23,7 @@ Well I can't say we were really planning on it but over the last few weeks we've
 
 <div className="aspect-w-16 aspect-h-9 my-12">
   <iframe
-    src="https://www.youtube.com/embed/3O_3X7InOw8"
+    src="https://www.youtube.com/embed/DxcJbrs6rKk"
     frameBorder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowFullScreen
@@ -34,7 +34,7 @@ This has to be one of the most feature-rich Tailwind releases of all-time. Intro
 
 Here are the highlights:
 
-- [All-new improved Tailwind CLI](#all-new-improved-tailwind-cli)
+- [All-new high-performance Tailwind CLI](#all-new-high-performance-tailwind-cli)
 - [Before and after variants](#before-and-after-variants)
 - [First-letter/line variants](#first-letter-line-variants)
 - [Selected text variants](#selected-text-variants)
@@ -52,11 +52,13 @@ Here are the highlights:
 
 For the full details, [check out the release notes](https://github.com/tailwindlabs/tailwindcss/releases/tag/v2.2.0) on GitHub.
 
+It's important to note that although this is a minor release and there are no breaking changes in the classic engine, **Just-in-Time mode is still in preview and v2.2 introduces a few very small changes that might impact you**, so make sure you read through the [changes and deprecations](https://github.com/tailwindlabs/tailwindcss/releases/tag/v2.2.0#changes-and-deprecations) in the release notes when upgrading.
+
 ---
 
-<a name="all-new-improved-tailwind-cli"></a>
+<a name="all-new-high-performance-tailwind-cli"></a>
 
-## All-new improved Tailwind CLI
+## All-new high-performance Tailwind CLI
 
 We've rewritten the Tailwind CLI tool from the ground-up with a performance-first mindset, while also adding support for a bunch of new features.
 
@@ -315,7 +317,7 @@ We'll probably flesh this out even more over time as people discover new edge ca
 
 Since Tailwind introduces a lot of non-standard CSS at-rules like `@tailwind` and `@apply`, you can often run into weird output when combining it with a PostCSS nesting plugin like `postcss-nested` or `postcss-nesting`.
 
-To ease the pain here, we've released a new PostCSS plugin called [@tailwindcss/nesting](https://github.com/tailwindlabs/tailwindcss-nesting) that acts as a lightweight compatibility layer between existing nesting plugins and Tailwind itself.
+To ease the pain here, we've included a new PostCSS plugin in the `tailwindcss` package that acts as a lightweight compatibility layer between existing nesting plugins and Tailwind itself.
 
 So if you need nesting support in your project, use our plugin, and stick it before Tailwind in your PostCSS plugin list:
 
@@ -324,7 +326,7 @@ So if you need nesting support in your project, use our plugin, and stick it bef
 module.exports = {
   plugins: [
     // ...
-    require('@tailwindcss/nesting'),
+    require('tailwindcss/nesting'),
     require('tailwindcss'),
     // ...
   ],
@@ -338,7 +340,7 @@ By default, it uses `postcss-nested` under the hood _(since that's what we use t
 module.exports = {
   plugins: [
     // ...
-    require('@tailwindcss/nesting')(require('postcss-nesting')),
+    require('tailwindcss/nesting')(require('postcss-nesting')),
     require('tailwindcss'),
     // ...
   ],
@@ -532,4 +534,4 @@ To upgrade to Tailwind CSS v2.2, install the latest release from npm:
 npm install -D tailwindcss@latest
 ```
 
-Although this is a minor release and there are no breaking changes in the classic engine, Just-in-Time mode is still in preview and v2.2 introduces a few very small changes that might impact you, so make sure you read through the [changes and deprecations](#) in the release notes.
+If you are using the Just-in-Time mode preview, you'll also want to read through the [changes and deprecations](https://github.com/tailwindlabs/tailwindcss/releases/tag/v2.2.0#changes-and-deprecations) in the release notes.
