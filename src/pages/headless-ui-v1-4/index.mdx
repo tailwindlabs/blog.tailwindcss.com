@@ -1,0 +1,158 @@
+import { adamwathan, robinmalfait } from '@/authors'
+import card from './card.jpg'
+
+export const meta = {
+  title: 'Headless UI v1.4: The One With Tabs',
+  description: `We just released Headless UI v1.4, which includes a brand new \`Tab\` component, and new APIs for manually closing \`Popover\` and \`Disclosure\` components more easily.`,
+  date: '2021-07-29T12:00:00.000Z',
+  authors: [adamwathan, robinmalfait],
+  image: card,
+  footer: `
+    <p>
+      Ready to try it out?
+      <a href="https://headlessui.dev" class="font-medium text-teal-600 hover:text-teal-700">
+        Visit the Headless UI website →
+      </a>
+    </p>
+  `,
+}
+
+We just released Headless UI v1.4, which includes a brand new `Tab` component, and new APIs for manually closing `Popover` and `Disclosure` components more easily.
+
+<!--more-->
+
+<a href="https://headlessui.dev">
+  <img src={card} alt="Headless UI" />
+</a>
+
+## Tabs
+
+Earlier this year we started working on [Tailwind UI Ecommerce](https://tailwindui.com/ecommerce), and we realized pretty quickly we were going to need to support tabs in Headless UI to be able to build the new interfaces we were designing.
+
+<!-- Image of ecommerce design that includes tabs -->
+
+Here's what we ended up with:
+
+```jsx
+import { Tab } from '@headlessui/react'
+
+function MyTabs() {
+  return (
+    <Tab.Group>
+      <Tab.List>
+        <Tab
+          className={({ selected }) =>
+            selected ? 'bg-blue-500 text-white' : 'bg-white text-black'
+          }
+        >
+          Tab 1
+        </Tab>
+
+        {/* ... */}
+      </Tab.List>
+      <Tab.Panels>
+        <Tab.Panel>Content 1</Tab.Panel>
+        {/* ... */}
+      </Tab.Panels>
+    </Tab.Group>
+  )
+}
+```
+
+Like all Headless UI components, this totally abstracts away stuff like keyboard navigation for you so you can create custom tabs in a completely declarative way, without having to think about any of the tricky accessibility details.
+
+[Check out the documentation](https://headlessui.dev/react/tabs) to play with a working example.
+
+### Closing Disclosures and Popovers
+
+Up until now, there was no way to close a `Disclosure` without clicking the actual button used to open it. For typical disclosure use cases this isn't a big deal, but it often makes sense to use disclosures for things like mobile navigation, where you want to close it when someone clicks a link _inside_ of it.
+
+Now you can use `Disclosure.Button` or (`DisclosureButton` in Vue) within your disclosure panel to close the panel, making it easy to wrap up things like links or other buttons so the panel doesn't stay open:
+
+```html
+<template>
+  <Disclosure>
+    <DisclosureButton>Open mobile menu</DisclosureButton>
+    <DisclosurePanel>
+      <DisclosureButton :as="MyLink" href="/home">Home</DisclosureButton>
+      <!-- ... -->
+    </DisclosurePanel>
+  </Disclosure>
+</template>
+
+<script>
+  import {
+    Disclosure,
+    DisclosureButton,
+    DisclosurePanel,
+  } from '@headlessui/vue'
+  import MyLink from './MyLink'
+
+  export default {
+    components: { Disclosure, DisclosureButton, DisclosurePanel, MyLink },
+  }
+</script>
+```
+
+The same thing works with `Popover` components, too:
+
+```jsx
+import { Popover } from '@headlessui/react'
+import MyLink from './MyLink'
+
+function MyPopover() {
+  return (
+    <Popover>
+      <Popover.Button>Solutions</Popover.Button>
+      <Popover.Panel>
+        <Popover.Button as={MyLink} href="/insights">
+          Insights
+        </Popover.Button>
+        {/* ... */}
+      </Popover.Panel>
+    </Popover>
+  )
+}
+```
+
+If you need finer control, we also pass a `close` function via the render prop/scoped slot, so you can imperatively close the panel when you need to:
+
+```jsx
+import { Popover } from '@headlessui/react'
+
+function MyPopover() {
+  return (
+    <Popover>
+      <Popover.Button>Terms</Popover.Button>
+      <Popover.Panel>
+        {({ close }) => (
+          <button
+            onClick={async () => {
+              await fetch('/accept-terms', { method: 'POST' })
+              close()
+            }}
+          >
+            Read and accept
+          </button>
+        )}
+      </Popover.Panel>
+    </Popover>
+  )
+}
+```
+
+For more details, check out the updated [Popover](https://headlessui.dev/react/popover#closing-popovers-manually) and [Disclosure](https://headlessui.dev/react/disclosure#closing-disclosures-manually) documentation.
+
+## Try it out
+
+Headless UI v1.4 is a minor update so there are no breaking changes. To upgrade, just install the latest version via npm:
+
+```shell
+# For React
+npm install @headlessui/react
+
+# For Vue
+npm install @headlessui/vue
+```
+
+Check out [the official website](https://headlessui.dev) for the latest documentation, and check out [Tailwind UI](https://tailwindui.com) if you want to play tons of styled examples.
