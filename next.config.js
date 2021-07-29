@@ -37,6 +37,10 @@ module.exports = withBundleAnalyzer({
       test: /\.mdx$/,
       oneOf: [
         {
+          test: /snippets/,
+          use: mdx,
+        },
+        {
           resourceQuery: /preview/,
           use: [
             ...mdx,
