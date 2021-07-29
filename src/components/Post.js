@@ -181,7 +181,7 @@ export default function Post({ meta, children, posts }) {
                 </dd>
               </dl>
               <div className="divide-y divide-gray-200 xl:pb-0 xl:col-span-3 xl:row-span-2">
-                <div className="prose max-w-none pt-10 pb-8">
+                <div className="max-w-none pt-10 pb-8">
                   <MDXProvider>{children}</MDXProvider>
                 </div>
                 {meta.footer && (

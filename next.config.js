@@ -3,6 +3,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 const withSyntaxHighlighting = require('./remark/withSyntaxHighlighting')
+const withProse = require('./remark/withProse')
 
 module.exports = withBundleAnalyzer({
   pageExtensions: ['js', 'jsx', 'mdx'],
@@ -28,7 +29,7 @@ module.exports = withBundleAnalyzer({
       {
         loader: '@mdx-js/loader',
         options: {
-          remarkPlugins: [withSyntaxHighlighting],
+          remarkPlugins: [withProse, withSyntaxHighlighting],
         },
       },
     ]

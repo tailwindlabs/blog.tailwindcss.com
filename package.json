@@ -9,6 +9,7 @@
     "build:rss": "node ./.next/server/scripts/build-rss.js"
   },
   "dependencies": {
+    "@headlessui/react": "^1.4.0",
     "@mdx-js/loader": "^1.6.22",
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "@tailwindcss/typography": "^0.4.0",

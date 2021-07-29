@@ -12,6 +12,7 @@ function dateSortDesc(a, b) {
 }
 
 export default function getAllPostPreviews() {
+  return []
   return importAll(require.context('./pages/?preview', true, /\.mdx$/))
     .filter((p) => !p.link.includes('/snippets/'))
     .filter((p) => p.module.meta.private !== true)
@@ -19,6 +20,8 @@ export default function getAllPostPreviews() {
 }
 
 export function getAllPosts() {
+  return []
+
   return importAll(require.context('./pages/?rss', true, /\.mdx$/))
     .filter((p) => !p.link.includes('/snippets/'))
     .filter((p) => p.module.meta.private !== true)
